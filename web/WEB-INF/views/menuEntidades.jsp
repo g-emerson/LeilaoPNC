@@ -3,7 +3,7 @@
 	<%-- // TODO: Codificar URL para garantir passagem de informação
 		de sessão
 	--%>
-	<li><a href="proposta-leilao">Propor Leilão</a></li>
+	<li><a href="novo">Propor Leilão</a></li>
 	<li><a href="#">Meus Leilões</a></li>
 	<li><a href="#">Lista de Leilões</a></li>
 	<li><a href="#">Imprimir Boletos</a></li>

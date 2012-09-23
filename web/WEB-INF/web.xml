@@ -20,6 +20,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ProporLeilao</servlet-name>
-        <url-pattern>/proposta-leilao</url-pattern>
+        <url-pattern>/novo</url-pattern>
     </servlet-mapping>
 </web-app>
