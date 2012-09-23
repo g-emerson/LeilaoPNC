@@ -22,6 +22,7 @@ public class Entidade implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(length=64)
 	private String nome;
 
 	private String cnpj;
