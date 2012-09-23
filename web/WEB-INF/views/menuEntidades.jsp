@@ -1,11 +1,9 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<ul>
+   <ul>
 	<%-- // TODO: Codificar URL para garantir passagem de informação
 		de sessão
 	--%>
-	<li><a href="novo">Propor Leilão</a></li>
-	<li><a href="#">Meus Leilões</a></li>
-	<li><a href="#">Lista de Leilões</a></li>
-	<li><a href="#">Imprimir Boletos</a></li>
-	<li><a href="#">Logout</a></li>
-</ul>
+    <li><a href="novo">Propor leilão</a></li>
+    <li><a href="leiloes">Leilões</a></li>
+    <li><a href="logout">Logout</a></li>
+   </ul>

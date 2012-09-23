@@ -7,11 +7,11 @@
 --%>
 
 <%
-	request.setAttribute("css", "mystyle.css");
-	request.setAttribute("header", "header.jsp");
-	request.setAttribute("breadcrumb", "breadcrumb.jsp");
-	request.setAttribute("menuPrincipal", "menuPrincipal.jsp");
-	pageContext.setAttribute("footer", "footer.jsp");
+	request.setAttribute("css", "css/mystyle.css");
+	request.setAttribute("header", "../static/header.jsp");
+	request.setAttribute("breadcrumb", "../static/breadcrumb.jsp");
+	request.setAttribute("menuPrincipal", "../static/menuPrincipal.jsp");
+	pageContext.setAttribute("footer", "../static/footer.jsp");
 %>
 
 <%@ include file="template-layout.jsp" %>
