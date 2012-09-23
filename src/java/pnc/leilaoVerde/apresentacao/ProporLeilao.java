@@ -55,7 +55,19 @@ public class ProporLeilao extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        /* TODO: Criar lógica para _recuperar_ o formulário de proposta de leilão */
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            /* Montando os componentes da view */
+            request.setAttribute("title", "Proposta de Leilão");
+            request.setAttribute("menuContexto", "menuEntidades.jsp");
+            request.setAttribute("main", "ProporLeilao.jsp");
+
+            RequestDispatcher view =  request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
+            view.forward(request, response);
+        }
+        finally {
+        }
     }
 
     /** 
@@ -68,7 +80,8 @@ public class ProporLeilao extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        /* TODO: Implementar lógica de processar uma proposta de leilão */
+        response.setContentType("text/html;charset=UTF-8");
     }
 
     /** 
