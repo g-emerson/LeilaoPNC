@@ -1,17 +1,12 @@
-<%-- 
-    Document   : index
-    Created on : Sep 23, 2012, 4:33:39 PM
-    Author     : giovani
---%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%
+request.setCharacterEncoding("UTF-8");
+response.setContentType("text/html; charset=UTF-8");
+response.setCharacterEncoding("UTF-8");
+request.setAttribute("title", "Teste de template 12");
+request.setAttribute("menuContexto", "menuEntidades.jsp");
+request.setAttribute("breadcrumb", "menuEntidades.jsp");
+request.setAttribute("main", "ProporLeilao.jsp");
+%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<jsp:include page="WEB-INF/views/leilao-template.jsp" />

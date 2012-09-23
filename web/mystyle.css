@@ -1,0 +1,221 @@
+/* CSS RESET */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* FIM de CSS RESET */
+
+/* definicoes para enchergarmos as seções da pagina */
+/*
+section,nav,article,header,footer{
+	border-style:solid;
+	border-width:2px;
+	//padding:1em;
+	border-color:black;
+}
+*/
+
+body {
+	padding: 1ex;
+	background-color: #060;
+}
+
+.clear-float {
+	clear: both;
+}
+
+#logo {
+	float: left;
+}
+
+header {
+	min-height: 128px;
+	border: 0;
+	background-color: #060;
+	margin: 0;
+}
+
+header h1 {
+	color: #afa;
+	font-family: Arial, sans;
+	font-weight: bold;
+	font-size: xx-large;
+	text-align: center;
+	padding: 1em;
+}
+
+#nav_prin {
+	clear:both;
+	margin: 1ex 0;
+	border-bottom: thick solid #afa;
+}
+
+#nav_prin  h2 {
+	display:none;
+}
+
+#nav_prin li {
+	display: inline-block;
+}
+
+#nav_prin li a {
+	display: inline-block;
+	background-color: #afa;
+	padding: 1ex;
+	border-top-left-radius: 12px;
+	border-bottom-right-radius: 6px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #060;
+}
+
+#breadcrumb{
+	border-top: thin solid #afa;
+	border-bottom: thin solid #afa;
+	margin: 1ex 0;
+	padding: 1ex 0;
+}
+
+#breadcrumb h2{
+	display:none;
+}
+
+#breadcrumb li{
+	display: inline-block;
+	color: #afa;
+	font-weight: bold;
+}
+
+#breadcrumb li a {
+	color: #afa;
+	font-weight: bold;
+	display: inline-block;
+	text-decoration: none;
+}
+
+#breadcrumb li a:hover {
+	text-decoration: underline;
+}
+
+#breadcrumb li a:after {
+	content: " > ";
+}
+
+#contexto {
+	background-color: #afa;
+	padding: 1ex;
+}
+
+#contexto:after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    clear: both;
+    padding: 0;
+    line-height: 1px;
+}
+
+#nav_contexto {
+	width:30ex;
+	float:left;
+	border: 0.3ex solid #060;
+	padding: 1ex;
+}
+
+#nav_contexto h2 {
+	font-weight: bold;
+	font-size: larger;
+	color: #060;
+	text-align: center;
+	border-bottom: 0.3ex #060 solid;
+}
+
+#nav_contexto a {
+	padding: 1ex 0ex;
+	margin: 1ex 0ex;
+	border-top: solid thin #060;
+	border-bottom: solid thin #060;
+	text-align: center;
+	display: block;
+	color: #060;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#nav_contexto a:hover {
+	text-decoration: underline;
+}
+
+#sc_contexto{
+	margin-left:33ex;
+	border: 0.3ex solid #060;
+	padding: 1ex;
+}
+
+#sc_contexto p {
+	margin-bottom: 1ex;
+	text-indent: 5ex;
+	text-align: justify;
+}
+
+#sc_contexto h2 {
+	text-align: center;
+	font-size: larger;
+	margin-bottom: 1em;
+}
+
+footer{
+	clear:both;
+	background-color: #060;
+	color: #afa;
+	text-align: center;
+	font-size: small;
+	font-family: Arial, sans;
+	border: thin solid black;
+	padding: 1ex;
+}
+

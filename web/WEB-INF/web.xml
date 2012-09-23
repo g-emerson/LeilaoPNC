@@ -8,4 +8,18 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    <display-name>Leilão de itens verdes (CERs)</display-name>
+    <description>
+    Aplicação Web de leião de créditos de carbono criada para o trabalho
+    integrado.
+    </description>
+    <servlet>
+        <description>Servlet controlador do caso de uso Propor Leilão</description>
+        <servlet-name>ProporLeilao</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.ProporLeilao</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProporLeilao</servlet-name>
+        <url-pattern>/proposta-leilao</url-pattern>
+    </servlet-mapping>
 </web-app>
