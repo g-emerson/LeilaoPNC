@@ -4,7 +4,7 @@
  <head>
   <meta charset="UTF-8"/> 
   <title>${requestScope.title}</title>
-  <link rel="stylesheet" type="text/css" href="${requestScope.css}" />
+  <link rel="stylesheet" type="text/css" href="${appRoot}/${css}" />
  </head>
  <body>
   <header>
