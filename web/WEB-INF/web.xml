@@ -28,7 +28,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ProporLeilao</servlet-name>
-        <url-pattern>/novo</url-pattern>
+        <url-pattern>/propostaleilao</url-pattern>
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>CadastrarEntidade</servlet-name>
