@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-    <servlet-mapping>
-        <servlet-name>ListarLeiloes</servlet-name>
-        <url-pattern>/leilao</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -23,11 +19,23 @@
         <servlet-class>pnc.leilaoVerde.apresentacao.ProporLeilao</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CadastrarEntidade</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.CadastrarEntidade</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ListarLeiloes</servlet-name>
         <servlet-class>pnc.leilaoVerde.dominio.administrativo.ListarLeiloes</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProporLeilao</servlet-name>
-        <url-pattern>/novo</url-pattern>
+        <url-pattern>/propostaleilao</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>CadastrarEntidade</servlet-name>
+        <url-pattern>/cadastrar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarLeiloes</servlet-name>
+        <url-pattern>/leilao</url-pattern>
     </servlet-mapping>
 </web-app>
