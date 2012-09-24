@@ -219,3 +219,7 @@ footer{
 	padding: 1ex;
 }
 
+span{
+	width: 14em;
+	display: inline-block;
+}
