@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <meta charset="UTF-8"/> 
   <title>${requestScope.title}</title>
+  <meta charset="UTF-8"/> 
+  <meta name="viewport" content="width=device-width,user-scalable=false" />
   <link rel="stylesheet" type="text/css" href="${appRoot}/${css}" />
  </head>
  <body>

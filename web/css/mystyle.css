@@ -223,3 +223,57 @@ span{
 	width:  14em;
 	display: inline-block;
 }
+
+@media screen and (max-width:640px) {
+
+	#nav_prin {
+		
+		display:none;
+		
+		
+	}	
+	
+	
+	header h1 {
+	color: #afa;
+	font-family: Arial, sans;
+	font-weight: bold;
+	font-size: large;
+	text-align: center;
+}
+	
+	#nav_contexto {
+	width:auto;
+	float: none;
+	border: 0.3ex solid #060;
+	padding: 1ex;
+	
+	}
+	
+	#sc_contexto{
+	margin-left:0ex;
+	border: 0.3ex solid #060;
+	padding: 1ex;
+	
+	}
+	
+	#breadcrumb{
+	font-size: small;
+	}
+	
+	header {
+		
+		text-align:center;
+		min-height: 0px ;
+	}
+	
+	
+	#logo {
+		float:none;
+		width: 50px;
+		height: 50px;
+	}
+	
+}
+
+
