@@ -27,6 +27,7 @@
         <servlet-class>pnc.leilaoVerde.dominio.administrativo.ListarLeiloes</servlet-class>
     </servlet>
     <servlet>
+        <description>testes teste</description>
         <servlet-name>RealizarLance</servlet-name>
         <servlet-class>pnc.leilaoVerde.apresentacao.RealizarLance</servlet-class>
     </servlet>
@@ -46,7 +47,7 @@
         <servlet-name>ListarLeiloes</servlet-name>
         <url-pattern>/leilao</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RealizarLance</servlet-name>
         <url-pattern>/leilao/lance</url-pattern>
     </servlet-mapping>
