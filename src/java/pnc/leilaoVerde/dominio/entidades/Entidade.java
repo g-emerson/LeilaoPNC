@@ -25,7 +25,8 @@ public class Entidade implements Serializable {
 	@Column(length=64)
 	private String nome;
 
-	private String cnpj;
+	@Column(length=15)
+        private String cnpj;
 
 	private int quantidadeCER;
 
