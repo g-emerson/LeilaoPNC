@@ -3,6 +3,6 @@
 	<%-- // TODO: Codificar URL para garantir passagem de informação
 		de sessão
 	--%>
-    <li><a href="leiloes">Leilões</a></li>
-    <li><a href="logout">Logout</a></li>
+    <li><a href="${appRoot}/leiloes">Leilões</a></li>
+    <li><a href="${appRoot}/logout">Logout</a></li>
    </ul>

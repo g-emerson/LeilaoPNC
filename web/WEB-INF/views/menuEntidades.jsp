@@ -3,7 +3,9 @@
 	<%-- // TODO: Codificar URL para garantir passagem de informação
 		de sessão
 	--%>
-    <li><a href="novo">Propor leilão</a></li>
-    <li><a href="leilao">Leilões</a></li>
-    <li><a href="logout">Logout</a></li>
+    <li><a href="${appRoot}/propostaleilao">Propor leilão</a></li>
+    <li><a href="${appRoot}/leilao">Leilões</a></li>
+    <li><a href="${appRoot}/listaentidades">Entidades</a></li>
+    <li><a href="${appRoot}/logout">Logout</a></li>
+    
    </ul>

@@ -17,83 +17,94 @@ import javax.persistence.Id;
  */
 @Entity
 public class Entidade implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
+
+    private static final long serialVersionUID = 1L;
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    private Long id;
+    @Column(length = 64)
+    private String nome;
+    @Column(length = 15)
+    private String cnpj;
+    @Column
+    private int quantidadeCER;
+    @Column
+    private boolean validada;
 
-	@Column(length=64)
-	private String nome;
+    public Long getId() {
+        return id;
+    }
 
-	private String cnpj;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	private int quantidadeCER;
+    public String getCnpj() {
+        return cnpj;
+    }
 
-	private boolean validada;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getCnpj() {
-		return cnpj;
-	}
+    public int getQuantidadeCER() {
+        return quantidadeCER;
+    }
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
+    public void setQuantidadeCER(int quantidadeCER) {
+        this.quantidadeCER = quantidadeCER;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public boolean isValidada() {
+        return validada;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setValidada(boolean validada) {
+        this.validada = validada;
+    }
 
-	public int getQuantidadeCER() {
-		return quantidadeCER;
-	}
+    /**
+     * Obtem a quantidade de CERs disponivies para a entidade
+     * fornecida oferecer em leilões.
+     * 
+     * @param entId Id da entidade
+     * @return Quantidade de CERs disponíveis
+     */
+    public int obterCERsDisponiveis(Long entId) {
+        // TODO: Implementar 
+        return 0;
+    }
 
-	public void setQuantidadeCER(int quantidadeCER) {
-		this.quantidadeCER = quantidadeCER;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
-	public boolean isValidada() {
-		return validada;
-	}
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Entidade)) {
+            return false;
+        }
+        Entidade other = (Entidade) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
-	public void setValidada(boolean validada) {
-		this.validada = validada;
-	}
-
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Entidade)) {
-			return false;
-		}
-		Entidade other = (Entidade) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "pnc.dominio.entidades.Entidade[ id=" + id + " ]";
-	}
-
+    @Override
+    public String toString() {
+        return "pnc.dominio.entidades.Entidade[ id=" + id + " ]";
+    }
 }
