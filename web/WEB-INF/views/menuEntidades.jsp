@@ -9,6 +9,3 @@
     <li><a href="${appRoot}/logout">Logout</a></li>
     
    </ul>
-
-    
-    
