@@ -34,7 +34,7 @@ public class ProporLeilao extends HttpServlet {
             request.setAttribute("title", "Proposta de Leilão");
             request.setAttribute("menuContexto", "menuEntidades.jsp");
             request.setAttribute("main", "ProporLeilao.jsp");
-
+            
             RequestDispatcher view =  request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
             view.forward(request, response);
         }

@@ -46,7 +46,7 @@
         <servlet-name>ListarLeiloes</servlet-name>
         <url-pattern>/leilao</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RealizarLance</servlet-name>
         <url-pattern>/leilao/lance</url-pattern>
     </servlet-mapping>
