@@ -4,7 +4,7 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+/*html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -23,45 +23,32 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-}
+}*/
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
+
 ol, ul {
 	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+	padding: 0px;
+	margin: 0px;
 }
 /* FIM de CSS RESET */
-
-/* definicoes para enchergarmos as seções da pagina */
-/*
-section,nav,article,header,footer{
-	border-style:solid;
-	border-width:2px;
-	//padding:1em;
-	border-color:black;
-}
-*/
-
 body {
 	padding: 1ex;
-	background-color: #060;
+	background-color: #006600;
+	line-height: 1;
+	font: 13px normal Calibri, Tahoma, Verdana;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
 }
 
 .clear-float {
@@ -73,25 +60,26 @@ body {
 }
 
 header {
-	min-height: 128px;
-	border: 0;
-	background-color: #060;
-	margin: 0;
+	margin: 0px 0px 0.3em 0px;
+	float: left;
+	width: 100%;
 }
 
 header h1 {
-	color: #afa;
-	font-family: Arial, sans;
 	font-weight: bold;
 	font-size: xx-large;
 	text-align: center;
-	padding: 1em;
+	padding: 0.8em;
 }
 
+header h1 ,#breadcrumb li, #breadcrumb li a{
+	color: #AAFFAA;
+}
+/* Item eliminado
 #nav_prin {
 	clear:both;
 	margin: 1ex 0;
-	border-bottom: thick solid #afa;
+	border-bottom: thick solid #AAFFAA;
 }
 
 #nav_prin  h2 {
@@ -111,34 +99,23 @@ header h1 {
 	text-decoration: none;
 	font-weight: bold;
 	color: #060;
-}
+}*/
 
 #breadcrumb{
-	border-top: thin solid #afa;
-	border-bottom: thin solid #afa;
+	border: 0px solid #AAFFAA;
+	border-width: thin 0px thin 0px;
 	margin: 1ex 0;
 	padding: 1ex 0;
-}
-
-#breadcrumb h2{
-	display:none;
+	clear: both;
 }
 
 #breadcrumb li{
 	display: inline-block;
-	color: #afa;
 	font-weight: bold;
 }
 
 #breadcrumb li a {
-	color: #afa;
 	font-weight: bold;
-	display: inline-block;
-	text-decoration: none;
-}
-
-#breadcrumb li a:hover {
-	text-decoration: underline;
 }
 
 #breadcrumb li a:after {
@@ -146,7 +123,7 @@ header h1 {
 }
 
 #contexto {
-	background-color: #afa;
+	background-color: #AAFFAA;
 	padding: 1ex;
 }
 
@@ -198,8 +175,6 @@ header h1 {
 
 #sc_contexto p {
 	margin-bottom: 1ex;
-	text-indent: 5ex;
-	text-align: justify;
 }
 
 #sc_contexto h2 {
@@ -225,55 +200,41 @@ span{
 }
 
 @media screen and (max-width:640px) {
-
-	#nav_prin {
-		
-		display:none;
-		
-		
+	#nav_prin {	
+		display: none;		
 	}	
-	
-	
 	header h1 {
-	color: #afa;
-	font-family: Arial, sans;
-	font-weight: bold;
-	font-size: large;
-	text-align: center;
-}
-	
+		color: #afa;
+		font-weight: bold;
+		font-size: large;
+		text-align: center;
+		padding: 0px;
+		margin: 0px;
+	}
 	#nav_contexto {
-	width:auto;
-	float: none;
-	border: 0.3ex solid #060;
-	padding: 1ex;
-	
+		width: auto;
+		float: none;
+		border: 0.3ex solid #060;
+		padding: 1ex;
 	}
 	
 	#sc_contexto{
-	margin-left:0ex;
-	border: 0.3ex solid #060;
-	padding: 1ex;
-	
+		margin-left: 0ex;
+		border: 0.3ex solid #060;
+		padding: 1ex;
 	}
 	
 	#breadcrumb{
-	font-size: small;
+		font-size: small;
 	}
 	
-	header {
-		
+	header {	
 		text-align:center;
-		min-height: 0px ;
 	}
-	
 	
 	#logo {
 		float:none;
-		width: 50px;
-		height: 50px;
+		width: 50%;
+		max-width: 120px;
 	}
-	
 }
-
-
