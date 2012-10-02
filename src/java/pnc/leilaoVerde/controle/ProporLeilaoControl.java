@@ -7,6 +7,7 @@ package pnc.leilaoVerde.controle;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import pnc.leilaoVerde.dominio.entidades.Entidade;
 
 /**
  * Classe de controle para o caso de uso Propor Leilao
@@ -25,6 +26,13 @@ public class ProporLeilaoControl {
         
         EntityManager em = emf.createEntityManager();
         
-        return 0;
+        Entidade ent = em.find(Entidade.class, entId);
+        
+        if (ent != null) {
+            return ent.obterCERsDisponiveis(entId);
+        }
+        else {
+            return 0;
+        }
     }
 }

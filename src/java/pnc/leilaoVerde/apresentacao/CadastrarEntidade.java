@@ -5,6 +5,7 @@
 package pnc.leilaoVerde.apresentacao;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +50,9 @@ public class CadastrarEntidade extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO: Implementar lógica de cadastro da entidade
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter w = response.getWriter();
+        w.println("Funfou demais!!");
     }
 
     /**
