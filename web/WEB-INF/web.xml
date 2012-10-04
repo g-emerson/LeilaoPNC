@@ -35,6 +35,10 @@
         <servlet-name>GerenciarLeilao</servlet-name>
         <servlet-class>pnc.leilaoVerde.apresentacao.GerenciarLeilao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarEntidades</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.ListarEntidades</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProporLeilao</servlet-name>
         <url-pattern>/propostaleilao</url-pattern>
@@ -54,5 +58,9 @@
     <servlet-mapping>
         <servlet-name>GerenciarLeilao</servlet-name>
         <url-pattern>/leilao/editar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarEntidades</servlet-name>
+        <url-pattern>/listaentidades</url-pattern>
     </servlet-mapping>
 </web-app>
