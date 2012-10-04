@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pnc.leilaoVerde.controle.CadastrarEntidadeControl;
 
 /**
  *
@@ -51,6 +52,15 @@ public class CadastrarEntidade extends HttpServlet {
             throws ServletException, IOException {
         // TODO: Implementar lógica de cadastro da entidade
         response.setContentType("text/html;charset=UTF-8");
+
+        CadastrarEntidadeControl cadEnt = new CadastrarEntidadeControl();
+
+        cadEnt.setCNPJ(request.getParameter("cnpj"));
+        cadEnt.setNome(request.getParameter("nome"));
+        cadEnt.setQuantidadeCER(Integer.parseInt(request.getParameter("quantCER")));
+
+        cadEnt.cadastrarEntidade();
+
         PrintWriter w = response.getWriter();
         w.println("Funfou demais!!");
     }

@@ -46,6 +46,9 @@ public class CadastrarEntidadeControl {
         // TODO: defe verificar se já existe entidade com mesmo nome
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LeilaoPNCPU");
         EntityManager em = emf.createEntityManager();
-        em.persist(em);
+
+        em.getTransaction().begin();
+        em.persist(ent);
+        em.getTransaction().commit();
     }
 }
