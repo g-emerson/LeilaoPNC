@@ -20,6 +20,8 @@ public class CadastrarEntidadeControl {
     private Entidade getEntidade() {
         if (entidade == null) {
             entidade = new Entidade();
+            entidade.setAdmin(false);
+            entidade.setValidada(false);
         }
 
         return entidade;
@@ -38,6 +40,16 @@ public class CadastrarEntidadeControl {
     public void setQuantidadeCER(int quantidadeCER) {
         Entidade ent = getEntidade();
         ent.setQuantidadeCER(quantidadeCER);
+    }
+
+    public void setEmail(String email) {
+        Entidade ent = getEntidade();
+        ent.setEmail(email);
+    }
+
+    public void setSenha(String passwd) {
+        Entidade ent = getEntidade();
+        ent.setSenha(passwd);
     }
 
     public void cadastrarEntidade() {

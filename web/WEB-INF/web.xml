@@ -24,7 +24,7 @@
     </servlet>
     <servlet>
         <servlet-name>ListarLeiloes</servlet-name>
-        <servlet-class>pnc.leilaoVerde.dominio.administrativo.ListarLeiloes</servlet-class>
+        <servlet-class>pnc.leilaoVerde.apresentacao.ListarLeiloes</servlet-class>
     </servlet>
     <servlet>
         <description>testes teste</description>

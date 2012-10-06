@@ -5,7 +5,6 @@
 package pnc.leilaoVerde.apresentacao;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,19 +49,35 @@ public class CadastrarEntidade extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // TODO: Implementar lógica de cadastro da entidade
+        String resultado = "";
         response.setContentType("text/html;charset=UTF-8");
 
         CadastrarEntidadeControl cadEnt = new CadastrarEntidadeControl();
 
-        cadEnt.setCNPJ(request.getParameter("cnpj"));
-        cadEnt.setNome(request.getParameter("nome"));
-        cadEnt.setQuantidadeCER(Integer.parseInt(request.getParameter("quantCER")));
+        try {
+            cadEnt.setCNPJ(request.getParameter("cnpj"));
+            cadEnt.setNome(request.getParameter("nome"));
+            cadEnt.setQuantidadeCER(Integer.parseInt(request.getParameter("quantCER")));
 
-        cadEnt.cadastrarEntidade();
+            // TODO: Testar se a senha enviada é igual à senha de confirmação
+            cadEnt.setSenha(request.getParameter("passwd"));
+            cadEnt.setEmail(request.getParameter("email"));
 
-        PrintWriter w = response.getWriter();
-        w.println("Funfou demais!!");
+            cadEnt.cadastrarEntidade();
+            
+            resultado = "Cadastro realizado com sucesso !";
+        } catch (Exception ex) {
+            resultado = "Falha no cadastro: " + ex.getMessage();
+        }
+
+        request.setAttribute("resultado", resultado);
+
+        request.setAttribute("title", "Cadastro de Entidade");
+        request.setAttribute("menuContexto", "menuEntidades.jsp");
+        request.setAttribute("main", "ResultadoOperacao.jsp");
+
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
+        rd.forward(request, response);
     }
 
     /**

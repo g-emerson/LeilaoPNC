@@ -7,7 +7,10 @@
    <form method="post" action="${appRoot}/cadastrar">
     <label><span>Nome: </span><input name="nome" type="text"  size=50 /> </label><br />
     <label><span>CNPJ: </span><input name="cnpj" type="text" size=30 /></label><br />
-    <label><span>E-mail: </span><input name="email" type="text" size=50 /></label><br />
     <label><span>Quantidade de CER: </span><input name="quantCER" type="text" /></label><br />
+    <br />
+    <label><span>E-mail: </span><input name="email" type="text" size=50 /></label><br />
+    <label><span>Senha: </span><input name="passwd" type="password" /></label><br />
+    <label><span>Confirmar senha: </span><input name="passwdConf" type="password" /></label><br />
     <input type="submit" />
    </form>
