@@ -4,9 +4,9 @@ request.setCharacterEncoding("UTF-8");
 response.setContentType("text/html; charset=UTF-8");
 response.setCharacterEncoding("UTF-8");
 request.setAttribute("title", "Bolão PNC");
-request.setAttribute("menuContexto", "menuEntidades.jsp");
+request.setAttribute("menuContexto", "menuGeral.jsp");
 request.setAttribute("breadcrumb", "menuEntidades.jsp");
-request.setAttribute("main", "RealizarLance.jsp");
+request.setAttribute("main", "Login.jsp");
 %>
 
 <jsp:include page="WEB-INF/views/leilao-template.jsp" />

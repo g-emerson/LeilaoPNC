@@ -39,6 +39,14 @@
         <servlet-name>ListarEntidades</servlet-name>
         <servlet-class>pnc.leilaoVerde.apresentacao.ListarEntidades</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.Login</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProporLeilao</servlet-name>
         <url-pattern>/propostaleilao</url-pattern>
@@ -62,5 +70,13 @@
     <servlet-mapping>
         <servlet-name>ListarEntidades</servlet-name>
         <url-pattern>/listaentidades</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 </web-app>

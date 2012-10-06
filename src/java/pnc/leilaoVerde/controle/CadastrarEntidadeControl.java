@@ -52,6 +52,11 @@ public class CadastrarEntidadeControl {
         ent.setSenha(passwd);
     }
 
+    public Long getIdEntidadeCadastrada() {
+        Entidade ent = getEntidade();
+        return ent.getId();
+    }
+
     public void cadastrarEntidade() {
         Entidade ent = getEntidade();
         
@@ -62,5 +67,7 @@ public class CadastrarEntidadeControl {
         em.getTransaction().begin();
         em.persist(ent);
         em.getTransaction().commit();
+
+        em.close();
     }
 }

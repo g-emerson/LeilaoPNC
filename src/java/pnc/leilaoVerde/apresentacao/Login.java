@@ -10,16 +10,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import pnc.leilaoVerde.controle.CadastrarEntidadeControl;
+import pnc.leilaoVerde.controle.LoginControl;
 
 /**
  *
  * @author giovani
  */
-public class CadastrarEntidade extends HttpServlet {
+public class Login extends HttpServlet {
 
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -30,17 +29,14 @@ public class CadastrarEntidade extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            request.setAttribute("title", "Cadastro de Entidade");
-            request.setAttribute("menuContexto", "menuGeral.jsp");
-            request.setAttribute("main", "CadastrarEntidade.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
-            rd.forward(request, response);
-        } finally {
-        }
+        request.setAttribute("title", "Login");
+        request.setAttribute("menuContexto", "menuGeral.jsp");
+        request.setAttribute("main", "Login.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
+        rd.forward(request, response);
     }
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -50,48 +46,45 @@ public class CadastrarEntidade extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String resultado = "";
         response.setContentType("text/html;charset=UTF-8");
 
-        CadastrarEntidadeControl cadEnt = new CadastrarEntidadeControl();
+        String senha = request.getParameter("passwd");
+        String login = request.getParameter("email");
+        boolean admin = "ON".equals(request.getParameter("admin"));
+        boolean autenticado = false;
 
-        try {
-            cadEnt.setCNPJ(request.getParameter("cnpj"));
-            cadEnt.setNome(request.getParameter("nome"));
-            cadEnt.setQuantidadeCER(Integer.parseInt(request.getParameter("quantCER")));
+        LoginControl lc = new LoginControl();
 
-            // TODO: Testar se a senha enviada é igual à senha de confirmação
-            cadEnt.setSenha(request.getParameter("passwd"));
-            cadEnt.setEmail(request.getParameter("email"));
+        autenticado = lc.autenticarUsuario(login, senha, admin);
 
-            cadEnt.cadastrarEntidade();
+        if (autenticado) {
+            request.getSession().setAttribute("usuario", lc.getUsuarioID());
 
-            resultado = String.format("Cadastro realizado com sucesso ! ID = %d",
-                    cadEnt.getIdEntidadeCadastrada());
-
-            HttpSession session = request.getSession(true);
-            session.setAttribute("usuario", cadEnt.getIdEntidadeCadastrada());
-            request.setAttribute("menuContexto", "menuEntidades.jsp");
-        } catch (Exception ex) {
-            resultado = "Falha no cadastro: " + ex.getMessage();
+            if (admin) {
+                request.setAttribute("menuContexto", "menuAdministrador.jsp");
+            } else {
+                request.setAttribute("menuContexto", "menuEntidades.jsp");
+            }
+            request.setAttribute("resultado", "Bem vindo !!");
+        }
+        else {
             request.setAttribute("menuContexto", "menuGeral.jsp");
+            request.setAttribute("resultado", "Autenticação falhou !!");
         }
 
-        request.setAttribute("resultado", resultado);
+        request.setAttribute("title", "Login");
 
-        request.setAttribute("title", "Cadastro de Entidade");
         request.setAttribute("main", "ResultadoOperacao.jsp");
-
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
         rd.forward(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }
