@@ -60,7 +60,7 @@ public class CadastrarEntidade extends HttpServlet {
             cadEnt.setNome(request.getParameter("nome"));
             cadEnt.setQuantidadeCER(Integer.parseInt(request.getParameter("quantCER")));
 
-            // TODO: Testar se a senha enviada é igual à senha de confirmação
+            // TODO: CadastrarEntidade - Testar se a senha enviada é igual à senha de confirmação
             cadEnt.setSenha(request.getParameter("passwd"));
             cadEnt.setEmail(request.getParameter("email"));
 

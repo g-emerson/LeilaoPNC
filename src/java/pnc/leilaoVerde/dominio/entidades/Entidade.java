@@ -63,12 +63,13 @@ public class Entidade extends Usuario implements Serializable {
      * Obtem a quantidade de CERs disponivies para a entidade
      * fornecida oferecer em leilões.
      * 
-     * @param entId Id da entidade
      * @return Quantidade de CERs disponíveis
      */
-    public int obterCERsDisponiveis(Long entId) {
-        // TODO: Implementar 
-        return 0;
+    public int obterCERsDisponiveis() {
+        // TODO: Deve recuperar a quantidade de CREs que possui e que ainda não
+        // foram ofertadas em nenhum leilão.
+        // Por enquanto retornaremos o total de CER que possui
+        return getQuantidadeCER();
     }
 
     @Override

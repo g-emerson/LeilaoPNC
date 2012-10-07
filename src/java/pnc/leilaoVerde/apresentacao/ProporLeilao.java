@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import pnc.leilaoVerde.controle.ProporLeilaoControl;
 
 /**
  *
@@ -29,17 +31,40 @@ public class ProporLeilao extends HttpServlet {
             throws ServletException, IOException {
         /* TODO: Criar lógica para _recuperar_ o formulário de proposta de leilão */
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            /* Montando os componentes da view */
-            request.setAttribute("title", "Proposta de Leilão");
-            request.setAttribute("menuContexto", "menuEntidades.jsp");
-            request.setAttribute("main", "ProporLeilao.jsp");
-            
-            RequestDispatcher view =  request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
-            view.forward(request, response);
+
+        HttpSession session = request.getSession(false);
+        Long userId = 0L;
+
+        if (session == null || session.getAttribute("usuario") == null) {
+            request.setAttribute("title", "Erro - sem sessão");
+            request.setAttribute("menuContexto", "menuGeral.jsp");
+            request.setAttribute("resultado", "Sessão encerrada ou inexistente ou usuário não logado.");
+            request.setAttribute("main", "ResultadoOperacao.jsp");
+        } else {
+            userId = (Long) session.getAttribute("usuario");
+            ProporLeilaoControl control = new ProporLeilaoControl(userId);
+            try {
+                request.setAttribute("qteCERsDisponiveis", control.obterCERsDisponiveis());
+                request.setAttribute("entidadeValidada", control.isEntidadeValidada());
+
+                request.setAttribute("title", "Proposta de Leilão");
+                request.setAttribute("menuContexto", "menuEntidades.jsp");
+                request.setAttribute("main", "ProporLeilao.jsp");
+
+            }
+            catch (Exception e) {
+                request.setAttribute("resultado", e.getMessage());
+                request.setAttribute("title", "Erro - Proposta de Leilão");
+                request.setAttribute("menuContexto", "menuEntidades.jsp");
+                request.setAttribute("main", "ResultadoOperacao.jsp");                
+            }
+            finally {
+                control.liberarRecursos();
+            }
         }
-        finally {
-        }
+
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
+        view.forward(request, response);
     }
 
     /** 
