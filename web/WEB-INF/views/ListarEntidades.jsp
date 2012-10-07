@@ -20,8 +20,8 @@
          <c:otherwise>
           <c:choose>
            <c:when test="${usuario.admin}">
-            <input type="button" value="OK" onclick="validarEntidade(${ent.id})" />
-            <input type="button" value="Reprovada" onclick="reprovarEntidade(${ent.id})" />
+            <input type="button" value="OK" onclick='validarEntidade("${appRoot}",${ent.id})' />
+            <input type="button" value="Reprovada" onclick='reprovarEntidade("${appRoot}",${ent.id})' />
            </c:when>
            <c:otherwise>Não validada</c:otherwise>
           </c:choose>

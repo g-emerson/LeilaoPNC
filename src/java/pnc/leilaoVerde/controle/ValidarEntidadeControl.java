@@ -4,6 +4,8 @@
  */
 package pnc.leilaoVerde.controle;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import pnc.leilaoVerde.dominio.entidades.Entidade;
 
@@ -16,7 +18,7 @@ public class ValidarEntidadeControl extends AbstractControl {
     public void validarEntidade(Long entId) {
         EntityManager em = createEntityManager();
         Entidade ent = null;
-
+        
         em.getTransaction().begin();
         ent = em.find(Entidade.class, entId);
         ent.setValidada(true);

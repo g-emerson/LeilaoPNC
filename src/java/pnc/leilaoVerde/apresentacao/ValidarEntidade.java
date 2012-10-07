@@ -38,25 +38,30 @@ public class ValidarEntidade extends HttpServlet {
                 Usuario usu = (Usuario) session.getAttribute("usuario");
 
                 if (usu != null && usu.isAdmin()) {
-                    Long entId = Long.getLong(request.getParameter("entId"));
+                    Long entId = Long.parseLong(request.getParameter("entId"));
                     boolean validar = Boolean.parseBoolean(request.getParameter("validar"));
                     ValidarEntidadeControl control = new ValidarEntidadeControl();
 
-                    control.validarEntidade(entId);
+                    // TODO: Implementar a função de reprovar. Em reprovar o que
+                    // acontece com a Entidade ???
+                    if (entId != null) {
+                        control.validarEntidade(entId);
 
-                    out.printf("{ \"resultado\":\"true\", \"entId\":\"%l\" }",
-                            entId);
-
+                        out.printf("{ \"resultado\": true, \"entId\":\"%d\" }",
+                                entId);
+                    } else {
+                        out.print("{ \"resultado\": false, \"entId\":\"nula\" }");
+                    }
                 } else {
-                    out.printf("{ \"resultado\":\"false\", \"erro_msg\":\"%s\" }",
+                    out.printf("{ \"resultado\": false, \"erro_msg\":\"%s\" }",
                             "Usuário sem permissão para realizar a operação");
                 }
             } else {
-                out.printf("{ \"resultado\":\"false\", \"erro_msg\":\"%s\" }",
+                out.printf("{ \"resultado\": false, \"erro_msg\":\"%s\" }",
                         "Sessão expirada");
             }
         } catch (Exception e) {
-            out.printf("{ \"resultado\":\"false\", \"erro_msg\":\"%s\" }",
+            out.printf("{ \"resultado\": false, \"erro_msg\":\"%s\" }",
                     e.getMessage());
         } finally {
             out.close();

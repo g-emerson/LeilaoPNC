@@ -67,10 +67,10 @@ public class CadastrarEntidade extends HttpServlet {
             cadEnt.cadastrarEntidade();
 
             resultado = String.format("Cadastro realizado com sucesso ! ID = %d",
-                    cadEnt.getIdEntidadeCadastrada());
+                    cadEnt.getEntidadeCadastrada().getId());
 
             HttpSession session = request.getSession(true);
-            session.setAttribute("usuario", cadEnt.getIdEntidadeCadastrada());
+            session.setAttribute("usuario", cadEnt.getEntidadeCadastrada());
             request.setAttribute("menuContexto", "menuEntidades.jsp");
         } catch (Exception ex) {
             resultado = "Falha no cadastro: " + ex.getMessage();

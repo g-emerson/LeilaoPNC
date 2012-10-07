@@ -5,8 +5,6 @@
 package pnc.leilaoVerde.controle;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import pnc.leilaoVerde.dominio.entidades.Entidade;
 
 /**
@@ -16,6 +14,7 @@ import pnc.leilaoVerde.dominio.entidades.Entidade;
 public class CadastrarEntidadeControl extends AbstractControl {
 
     private Entidade entidade = null;
+    private boolean cadastrou = false;
 
     private Entidade getEntidade() {
         if (entidade == null) {
@@ -52,9 +51,13 @@ public class CadastrarEntidadeControl extends AbstractControl {
         ent.setSenha(passwd);
     }
 
-    public Long getIdEntidadeCadastrada() {
+    public Entidade getEntidadeCadastrada() {
         Entidade ent = getEntidade();
-        return ent.getId();
+        
+        if (!cadastrou) {
+            ent = null;
+        }
+        return ent;
     }
 
     public void cadastrarEntidade() {
@@ -68,5 +71,7 @@ public class CadastrarEntidadeControl extends AbstractControl {
         em.getTransaction().commit();
 
         em.close();
+        
+        cadastrou = true;
     }
 }

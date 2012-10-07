@@ -5,6 +5,7 @@
   <title>${requestScope.title}</title>
   <meta name="viewport" content="width=device-width,user-scalable=false" />
   <link rel="stylesheet" type="text/css" href="${appRoot}/${css}" />
+  <script src="${appRoot}/js/myscript.js"></script>
  </head>
  <body>
   <header><jsp:include page="${requestScope.header}" />
