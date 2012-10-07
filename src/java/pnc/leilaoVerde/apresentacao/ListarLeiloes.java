@@ -51,7 +51,7 @@ public class ListarLeiloes extends HttpServlet {
             throws ServletException, IOException {
                 response.setContentType("text/html;charset=UTF-8");
         try {
-            /* TODO: criar a lógica do caso de uso utilizando o controlador do
+            /* TODO: Listar Leilões - criar a lógica do caso de uso utilizando o controlador do
              * modelo. */
 
             /* Montando os componentes da view */

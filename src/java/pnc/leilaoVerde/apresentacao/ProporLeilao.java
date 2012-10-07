@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import pnc.leilaoVerde.controle.ProporLeilaoControl;
+import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
  *
@@ -29,11 +30,10 @@ public class ProporLeilao extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* TODO: Criar lógica para _recuperar_ o formulário de proposta de leilão */
         response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession(false);
-        Long userId = 0L;
+        Usuario user = null;
 
         if (session == null || session.getAttribute("usuario") == null) {
             request.setAttribute("title", "Erro - sem sessão");
@@ -41,8 +41,8 @@ public class ProporLeilao extends HttpServlet {
             request.setAttribute("resultado", "Sessão encerrada ou inexistente ou usuário não logado.");
             request.setAttribute("main", "ResultadoOperacao.jsp");
         } else {
-            userId = (Long) session.getAttribute("usuario");
-            ProporLeilaoControl control = new ProporLeilaoControl(userId);
+            user = (Usuario) session.getAttribute("usuario");
+            ProporLeilaoControl control = new ProporLeilaoControl(user.getId());
             try {
                 request.setAttribute("qteCERsDisponiveis", control.obterCERsDisponiveis());
                 request.setAttribute("entidadeValidada", control.isEntidadeValidada());
@@ -57,9 +57,6 @@ public class ProporLeilao extends HttpServlet {
                 request.setAttribute("title", "Erro - Proposta de Leilão");
                 request.setAttribute("menuContexto", "menuEntidades.jsp");
                 request.setAttribute("main", "ResultadoOperacao.jsp");                
-            }
-            finally {
-                control.liberarRecursos();
             }
         }
 
@@ -77,7 +74,7 @@ public class ProporLeilao extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* TODO: Implementar lógica de processar uma proposta de leilão */
+        /* TODO: Propor Leilão - Implementar lógica de processar uma proposta de leilão */
         response.setContentType("text/html;charset=UTF-8");
     }
 

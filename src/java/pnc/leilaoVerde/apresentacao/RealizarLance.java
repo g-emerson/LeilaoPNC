@@ -50,7 +50,7 @@ public class RealizarLance extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* TODO: implementar lógica de cadastrar o lance */
+        /* TODO: Realizar Lance - implementar lógica de cadastrar o lance */
     }
 
     /** 

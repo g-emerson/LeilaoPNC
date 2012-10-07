@@ -49,7 +49,7 @@ public class GerenciarLeilao extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* TODO: implementar lógica de alteração do leilao */
+        /* TODO: Gerenciar Leilao - implementar lógica de alteração do leilao */
     }
 
     /** 

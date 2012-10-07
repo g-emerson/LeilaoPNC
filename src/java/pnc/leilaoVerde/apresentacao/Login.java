@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
         autenticado = lc.autenticarUsuario(login, senha, admin);
 
         if (autenticado) {
-            request.getSession().setAttribute("usuario", lc.getUsuarioID());
+            request.getSession().setAttribute("usuario", lc.getUsuario());
 
             if (admin) {
                 request.setAttribute("menuContexto", "menuAdministrador.jsp");

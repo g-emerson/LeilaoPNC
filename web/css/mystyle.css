@@ -199,6 +199,20 @@ span{
 	display: inline-block;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+td {
+    border: solid black thin;
+    padding: 1ex;
+    text-align: center;
+}
+
+thead td {
+    font-weight: bold;
+}
+
 @media screen and (max-width:640px) {
 	#nav_prin {	
 		display: none;		

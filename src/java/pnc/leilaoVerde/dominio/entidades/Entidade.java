@@ -7,6 +7,8 @@ package pnc.leilaoVerde.dominio.entidades;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
@@ -14,6 +16,9 @@ import pnc.leilaoVerde.dominio.administrativo.Usuario;
  * @author giovani
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Entidade.findAll", query="SELECT ent from Entidade ent")
+})
 public class Entidade extends Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,7 +71,7 @@ public class Entidade extends Usuario implements Serializable {
      * @return Quantidade de CERs disponíveis
      */
     public int obterCERsDisponiveis() {
-        // TODO: Deve recuperar a quantidade de CREs que possui e que ainda não
+        // TODO: Propor Leilão - Deve recuperar a quantidade de CREs que possui e que ainda não
         // foram ofertadas em nenhum leilão.
         // Por enquanto retornaremos o total de CER que possui
         return getQuantidadeCER();

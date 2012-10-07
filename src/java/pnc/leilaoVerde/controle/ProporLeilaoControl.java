@@ -5,19 +5,16 @@
 package pnc.leilaoVerde.controle;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import pnc.leilaoVerde.dominio.entidades.Entidade;
 
 /**
  * Classe de controle para o caso de uso Propor Leilao
  * @author giovani
  */
-public class ProporLeilaoControl {
+public class ProporLeilaoControl extends AbstractControl {
 
     private Long entId;
     private Entidade entidade = null;
-    private EntityManager entityManager = null;
 
     public ProporLeilaoControl(Long entId) {
         this.entId = entId;
@@ -25,22 +22,14 @@ public class ProporLeilaoControl {
 
     private Entidade getEntidade() {
         if (entidade == null) {
-            EntityManager em = getEntityManager();
+            EntityManager em = createEntityManager();
             
             entidade = em.find(Entidade.class, entId);
+
+            em.close();
         }
 
         return entidade;
-    }
-
-    private EntityManager getEntityManager() {
-        if (entityManager == null) {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("LeilaoPNCPU");
-
-            entityManager = emf.createEntityManager();
-        }
-
-        return entityManager;
     }
 
     /**
@@ -68,16 +57,6 @@ public class ProporLeilaoControl {
         }
         else {
             return false;
-        }
-    }
-
-    public void liberarRecursos() {
-        if (entidade != null) {
-            entidade = null;
-        }
-        if ( entityManager != null ) {
-            entityManager.close();
-            entityManager = null;
         }
     }
 }

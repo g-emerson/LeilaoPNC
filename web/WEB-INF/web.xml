@@ -13,72 +13,6 @@
     Aplicação Web de leião de créditos de carbono criada para o trabalho
     integrado.
     </description>
-    <servlet>
-        <description>Servlet controlador do caso de uso Propor Leilão</description>
-        <servlet-name>ProporLeilao</servlet-name>
-        <servlet-class>pnc.leilaoVerde.apresentacao.ProporLeilao</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CadastrarEntidade</servlet-name>
-        <servlet-class>pnc.leilaoVerde.apresentacao.CadastrarEntidade</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListarLeiloes</servlet-name>
-        <servlet-class>pnc.leilaoVerde.apresentacao.ListarLeiloes</servlet-class>
-    </servlet>
-    <servlet>
-        <description>testes teste</description>
-        <servlet-name>RealizarLance</servlet-name>
-        <servlet-class>pnc.leilaoVerde.apresentacao.RealizarLance</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GerenciarLeilao</servlet-name>
-        <servlet-class>pnc.leilaoVerde.apresentacao.GerenciarLeilao</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListarEntidades</servlet-name>
-        <servlet-class>pnc.leilaoVerde.apresentacao.ListarEntidades</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>pnc.leilaoVerde.apresentacao.Login</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>pnc.leilaoVerde.apresentacao.Logout</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ProporLeilao</servlet-name>
-        <url-pattern>/propostaleilao</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CadastrarEntidade</servlet-name>
-        <url-pattern>/cadastrar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListarLeiloes</servlet-name>
-        <url-pattern>/leilao</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RealizarLance</servlet-name>
-        <url-pattern>/leilao/lance</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GerenciarLeilao</servlet-name>
-        <url-pattern>/leilao/editar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListarEntidades</servlet-name>
-        <url-pattern>/listaentidades</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
     <jsp-config>
         <jsp-property-group>
             <display-name>Jsp config</display-name>
@@ -86,4 +20,78 @@
             <trim-directive-whitespaces>true</trim-directive-whitespaces>
         </jsp-property-group>
     </jsp-config>
+    <servlet>
+        <description>Servlet controlador do caso de uso Propor Leilão</description>
+        <servlet-name>ProporLeilao</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.ProporLeilao</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProporLeilao</servlet-name>
+        <url-pattern>/propostaleilao</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CadastrarEntidade</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.CadastrarEntidade</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CadastrarEntidade</servlet-name>
+        <url-pattern>/cadastrar</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ListarLeiloes</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.ListarLeiloes</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListarLeiloes</servlet-name>
+        <url-pattern>/leilao</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <description>Realização de lances</description>
+        <servlet-name>RealizarLance</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.RealizarLance</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RealizarLance</servlet-name>
+        <url-pattern>/leilao/lance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GerenciarLeilao</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.GerenciarLeilao</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GerenciarLeilao</servlet-name>
+        <url-pattern>/leilao/editar</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ListarEntidades</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.ListarEntidades</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListarEntidades</servlet-name>
+        <url-pattern>/listaentidades</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.Logout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ValidarEntidade</servlet-name>
+        <servlet-class>pnc.leilaoVerde.apresentacao.ValidarEntidade</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ValidarEntidade</servlet-name>
+        <url-pattern>/validarEntidade</url-pattern>
+    </servlet-mapping>
 </web-app>

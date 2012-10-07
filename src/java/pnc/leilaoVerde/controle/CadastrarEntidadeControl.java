@@ -13,7 +13,7 @@ import pnc.leilaoVerde.dominio.entidades.Entidade;
  *
  * @author giovani
  */
-public class CadastrarEntidadeControl {
+public class CadastrarEntidadeControl extends AbstractControl {
 
     private Entidade entidade = null;
 
@@ -60,9 +60,8 @@ public class CadastrarEntidadeControl {
     public void cadastrarEntidade() {
         Entidade ent = getEntidade();
         
-        // TODO: defe verificar se já existe entidade com mesmo nome
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LeilaoPNCPU");
-        EntityManager em = emf.createEntityManager();
+        // TODO: Cadastrar Entidade - defe verificar se já existe entidade com mesmo nome
+        EntityManager em = createEntityManager();
 
         em.getTransaction().begin();
         em.persist(ent);

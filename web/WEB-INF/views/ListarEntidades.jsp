@@ -1,9 +1,36 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    <h2>${requestScope.title}</h2>
-   <h3>Entidades com aprovacão pendente </h3>
-   <form><p>Pedroware Inc. (pedroware@mail.com) | CNPJ 12345678901234 | 300 CER <input type="button" value="OK"> <input type="button" value="Reprovada"></p>
-    <p>PUC Minas São Gabriel (puc@puc.br) | CNPJ 23456789012345 | 50 CER <input type="button" value="OK"> <input type="button" value="Reprovada"></p>
-    <p></p>
+   <h3>Entidades</h3>
+   <form>
+    <table>
+     <thead>
+      <tr><td>ID</td><td>Nome</td><td>e-mail</td><td>CNPJ</td><td>Qte. CER</td><td>Validação</td></tr>
+     </thead>
+     <c:forEach items="${listaEntidades}" var="ent">
+      <tr>
+       <td>${ent.id}</td>
+       <td>${ent.nome}</td>
+       <td>${ent.email}</td>
+       <td>${ent.cnpj}</td>
+       <td>${ent.quantidadeCER}</td>
+       <td id="validacao_${ent.id}">
+       <c:choose>
+        <c:when test="${ent.validada}">Validada</c:when>
+         <c:otherwise>
+          <c:choose>
+           <c:when test="${usuario.admin}">
+            <input type="button" value="OK" onclick="validarEntidade(${ent.id})" />
+            <input type="button" value="Reprovada" onclick="reprovarEntidade(${ent.id})" />
+           </c:when>
+           <c:otherwise>Não validada</c:otherwise>
+          </c:choose>
+         </c:otherwise>
+        </c:choose>
+       </td>
+      </tr>
+     </c:forEach>
+    </table>
    </form>
    <h3>Ranking das entidades</h3>
    <p>Padaria Pão Mole | 934234506 CER</p>

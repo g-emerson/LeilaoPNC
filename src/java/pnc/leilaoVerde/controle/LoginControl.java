@@ -6,24 +6,21 @@ package pnc.leilaoVerde.controle;
 
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
  *
  * @author giovani
  */
-public class LoginControl {
+public class LoginControl extends AbstractControl {
 
-    private Long usuarioID = 0L;
+    private Usuario usuario = null;
 
     /**
-     * Recupera o ID do usuario que foi autenticado
-     * @return ID do usuário autenticado
+     * @return O usuario que foi autenticado
      */
-    public Long getUsuarioID() {
-        return usuarioID;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     /**
@@ -40,8 +37,7 @@ public class LoginControl {
         EntityManager em = null;
 
         try {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("LeilaoPNCPU");
-            em = emf.createEntityManager();
+            em = createEntityManager();
 
             usu = (Usuario) em.createNamedQuery("Usuario.findByEmail").setParameter("email", login).getSingleResult();
         } catch (Exception e) {
@@ -68,9 +64,11 @@ public class LoginControl {
             }
         }
 
-
         if (autenticado) {
-            usuarioID = usu.getId();
+            usuario = usu;
+        }
+        else {
+            usuario = null;
         }
 
         return autenticado;
