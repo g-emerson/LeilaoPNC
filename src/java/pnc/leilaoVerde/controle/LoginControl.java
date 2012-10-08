@@ -29,10 +29,9 @@ public class LoginControl extends AbstractControl {
      *
      * @param login Login do usuário
      * @param senha Senha do usuário
-     * @param admim Flag que indica se é autenticação de administrador
      * @return true - Usuário autenticado, false caso contrário
      */
-    public boolean autenticarUsuario(String login, String senha, boolean admin) {
+    public boolean autenticarUsuario(String login, String senha) {
         boolean autenticado = false;
         Usuario usu = null;
         EntityManager em = null;
@@ -42,7 +41,7 @@ public class LoginControl extends AbstractControl {
 
             usu = (Usuario) em.createNamedQuery("Usuario.findByEmail").setParameter("email", login).getSingleResult();
         } catch (Exception e) {
-            String msg = String.format("Login %s senha %s admin %s\n %s \n", login, senha, admin, e.getMessage());
+            String msg = String.format("Login %s senha %s\n %s \n", login, senha, e.getMessage());
             usu = null;
 
             Logger log = Logger.getAnonymousLogger();
@@ -55,18 +54,9 @@ public class LoginControl extends AbstractControl {
         }
 
         if (usu != null) {
-            if (usu.autenticar(senha)) {
-                if (admin) {
-                    if (usu.isAdmin()) {
-                        autenticado = true;
-                    }
-                } else {
-                    autenticado = true;
-                }
-            }
+            autenticado = usu.autenticar(senha);
         }
-
-        if (usu == null && login.equals(USU_ADMIN)) {
+        else if (login.equals(USU_ADMIN)) {
             usu = new Usuario();
 
             usu.setAdmin(true);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pnc.leilaoVerde.controle.LoginControl;
+import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
  *
@@ -50,17 +51,17 @@ public class Login extends HttpServlet {
 
         String senha = request.getParameter("passwd");
         String login = request.getParameter("email");
-        boolean admin = "ON".equals(request.getParameter("admin"));
         boolean autenticado = false;
 
         LoginControl lc = new LoginControl();
 
-        autenticado = lc.autenticarUsuario(login, senha, admin);
+        autenticado = lc.autenticarUsuario(login, senha);
 
         if (autenticado) {
-            request.getSession().setAttribute("usuario", lc.getUsuario());
+            Usuario usu = lc.getUsuario();
+            request.getSession().setAttribute("usuario", usu);
 
-            if (admin) {
+            if (usu.isAdmin()) {
                 request.setAttribute("menuContexto", "menuAdministrador.jsp");
             } else {
                 request.setAttribute("menuContexto", "menuEntidades.jsp");

@@ -7,6 +7,5 @@
    <form method="post" action="${appRoot}/login">
     <label><span>E-mail: </span><input name="email" type="text" size=50 /></label><br />
     <label><span>Senha: </span><input name="passwd" type="password" size=50 /></label><br />
-    <label><span>Administrador: </span> <input type="checkbox" name="admin" value="ON" /></label><br />
     <input type="submit" value="Login" />
    </fom>
