@@ -4,7 +4,6 @@
  */
 package pnc.leilaoVerde.controle;
 
-import java.util.Date;
 import javax.persistence.EntityManager;
 import pnc.leilaoVerde.dominio.EstadoLeilao;
 import pnc.leilaoVerde.dominio.Leilao;
@@ -49,6 +48,30 @@ public class GerenciarLeilaoControl extends AbstractControl {
             em.getTransaction().commit();
 
             leilao = null;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
+    public void alterarLeilao()  throws Exception {
+        Leilao myleilao = getLeilao();
+
+        EntityManager em = createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            myleilao = em.merge(myleilao);
+
+            if (myleilao.getEstado() == EstadoLeilao.PROPOSTO ) {
+                myleilao.setEstado(EstadoLeilao.EM_ANDAMENTO);
+            }
+
+            em.getTransaction().commit();
+
         } catch (Exception e) {
             em.getTransaction().rollback();
             throw e;

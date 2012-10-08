@@ -5,6 +5,9 @@
 package pnc.leilaoVerde.apresentacao;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import pnc.leilaoVerde.controle.GerenciarLeilaoControl;
+import pnc.leilaoVerde.dominio.Leilao;
 import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
@@ -101,13 +105,60 @@ public class GerenciarLeilao extends HttpServlet {
 
                         request.setAttribute("resultado", "Leilao removido!");
                         request.setAttribute("main", "ResultadoOperacao.jsp");
-                    }
-                    else if (request.getParameter("acao").equals("Alterar")) {
-                        
+                    } else if (request.getParameter("acao").equals("Alterar")) {
+                        Leilao leilao = control.getLeilao();
+
+                        if (request.getParameter("nome") != null) {
+                            leilao.setNomeLeilao(request.getParameter("nome"));
+                        } else {
+                            throw new Exception("Nome do leilao nulo!");
+                        }
+
+                        if (request.getParameter("lanceMinimo") != null) {
+                            double lanceMinimo = Double.parseDouble(request.getParameter("lanceMinimo"));
+                            leilao.setLanceMinimo(lanceMinimo);
+                        }
+
+                        if (request.getParameter("quantCER") != null) {
+                            int quantCER = Integer.parseInt(request.getParameter("quantCER"));
+                            leilao.setQuantidadeCER(quantCER);
+                        }
+
+                        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                        String data;
+
+                        data = request.getParameter("dataInicial");
+                        if (data != null && !"".equals(data)) {
+                            leilao.setDataInicial(dateFormat.parse(data));
+                        }
+
+                        data = request.getParameter("dataFinal");
+                        if (data != null && !"".equals(data)) {
+                            leilao.setDataFinal(dateFormat.parse(data));
+                        }
+
+                        data = request.getParameter("horaInicial");
+                        if (data != null && !"".equals(data)) {
+                            leilao.setHoraInicial(timeFormat.parse(data));
+                        }
+
+                        data = request.getParameter("horaFinal");
+                        if (data != null && !"".equals(data)) {
+                            leilao.setHoraFinal(timeFormat.parse(data));
+                        }
+
+                        control.alterarLeilao();
+
+                        request.setAttribute("title", "Gerenciar Leião");
+                        request.setAttribute("resultado", "Alteração realizada.");
+                        request.setAttribute("main", "ResultadoOperacao.jsp");
                     }
                 } catch (Exception e) {
                     request.setAttribute("title", "Erro - Excecao");
                     request.setAttribute("resultado", e.getMessage());
+                    request.setAttribute("main", "ResultadoOperacao.jsp");
                 }
             } else {
                 request.setAttribute("title", "Erro - Sem permissão");
