@@ -39,8 +39,6 @@ public class ListarEntidades extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            /* TODO: Listar Entidades - criar a lógica do caso de uso utilizando o controlador do
-             * modelo. */
             ListarEntidadesControl control = new ListarEntidadesControl();
 
             List<Entidade> lista = control.obterListaDeEntidades();

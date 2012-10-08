@@ -5,11 +5,16 @@
 package pnc.leilaoVerde.apresentacao;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import pnc.leilaoVerde.controle.ListarLeiloesControl;
+import pnc.leilaoVerde.dominio.Leilao;
+import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
  *
@@ -30,10 +35,36 @@ public class ListarLeiloes extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-        
-        } finally {
+
+        ListarLeiloesControl control = new ListarLeiloesControl();
+
+        List<Leilao> lista = control.obterLeiloesPropostos();
+        request.setAttribute("leiloesPropostos", lista);
+
+        lista = control.obterLeiloesAtivos();
+        request.setAttribute("leiloesAprovados", lista);
+
+        /* Montando os componentes da view */
+        HttpSession session = request.getSession(false);
+        Usuario usu = null;
+        if (session != null) {
+            usu = (Usuario) session.getAttribute("usuario");
         }
+
+        if (usu != null) {
+            if (usu.isAdmin()) {
+                request.setAttribute("menuContexto", "menuAdministrador.jsp");
+            } else {
+                request.setAttribute("menuContexto", "menuEntidades.jsp");
+            }
+        } else {
+            request.setAttribute("menuContexto", "menuGeral.jsp");
+        }
+
+        request.setAttribute("title", "Entidades");
+        request.setAttribute("main", "ListarLeiloes.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -49,20 +80,7 @@ public class ListarLeiloes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                response.setContentType("text/html;charset=UTF-8");
-        try {
-            /* TODO: Listar Leilões - criar a lógica do caso de uso utilizando o controlador do
-             * modelo. */
-
-            /* Montando os componentes da view */
-            request.setAttribute("title", "Leilões");
-            request.setAttribute("menuContexto", "menuEntidades.jsp");
-            request.setAttribute("main", "ListarLeiloes.jsp");
-			RequestDispatcher view =  request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
-			view.forward(request, response);
-        }
-		finally {
-        }
+        processRequest(request, response);
     }
 
     /**
