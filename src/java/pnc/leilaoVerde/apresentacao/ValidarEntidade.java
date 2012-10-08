@@ -32,7 +32,7 @@ public class ValidarEntidade extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         try {
             if (session != null) {
                 Usuario usu = (Usuario) session.getAttribute("usuario");

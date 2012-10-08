@@ -23,6 +23,10 @@ public class ProporLeilaoControl extends AbstractControl {
     private String nomeLeilao;
     private double lanceMinimo;
 
+    public ProporLeilaoControl(Long entId) {
+        this.entId = entId;
+    }
+    
     public double getLanceMinimo() {
         return lanceMinimo;
     }
@@ -45,10 +49,6 @@ public class ProporLeilaoControl extends AbstractControl {
 
     public void setQuantCER(int quantCER) {
         this.quantCER = quantCER;
-    }
-
-    public ProporLeilaoControl(Long entId) {
-        this.entId = entId;
     }
 
     private Entidade getEntidade() {

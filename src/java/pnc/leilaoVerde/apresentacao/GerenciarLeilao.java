@@ -10,6 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import pnc.leilaoVerde.controle.GerenciarLeilaoControl;
+import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
  *
@@ -27,16 +30,40 @@ public class GerenciarLeilao extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            /* Montando os componentes da view */
-            request.setAttribute("title", "Realizar Lance");
-            request.setAttribute("menuContexto", "menuEntidades.jsp");
-            request.setAttribute("main", "GerenciarLeilao.jsp");
 
-            RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
-            view.forward(request, response);
-        } finally {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            Usuario usu = (Usuario) session.getAttribute("usuario");
+
+            if (usu != null && usu.isAdmin()) {
+                Long leilaoId = Long.parseLong(request.getParameter("leilao_id"));
+
+                request.setAttribute("menuContexto", "menuAdministrador.jsp");
+
+                try {
+                    GerenciarLeilaoControl control = new GerenciarLeilaoControl(leilaoId);
+
+                    request.setAttribute("leilao", control.getLeilao());
+                    request.setAttribute("menuContexto", "menuAdministrador.jsp");
+                    request.setAttribute("main", "GerenciarLeilao.jsp");
+                } catch (Exception e) {
+                    request.setAttribute("resultado", e.getMessage());
+                    request.setAttribute("main", "ResultadoOperacao.jsp");
+                }
+            } else {
+                request.setAttribute("resultado", "Usuário não tem permissão para realizar a operação!");
+                request.setAttribute("menuContexto", "menuGeral.jsp");
+                request.setAttribute("main", "ResultadoOperacao.jsp");
+            }
+        } else {
+            request.setAttribute("resultado", "Sessão expirada!");
+            request.setAttribute("menuContexto", "menuGeral.jsp");
+            request.setAttribute("main", "ResultadoOperacao.jsp");
         }
+        /* Montando os componentes da view */
+        request.setAttribute("title", "Gerenciar leilão");
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
+        view.forward(request, response);
     }
 
     /** 
@@ -49,7 +76,49 @@ public class GerenciarLeilao extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* TODO: Gerenciar Leilao - implementar lógica de alteração do leilao */
+        HttpSession session = request.getSession(false);
+        Usuario user = null;
+
+        if (session == null || session.getAttribute("usuario") == null) {
+            request.setAttribute("title", "Erro - sem sessão");
+            request.setAttribute("menuContexto", "menuGeral.jsp");
+            request.setAttribute("resultado", "Sessão encerrada ou inexistente ou usuário não logado.");
+            request.setAttribute("main", "ResultadoOperacao.jsp");
+        } else {
+            user = (Usuario) session.getAttribute("usuario");
+
+            if (user.isAdmin()) {
+                request.setAttribute("menuContexto", "menuAdministrador.jsp");
+                request.setAttribute("title", "Gerenciar Leilao");
+
+                Long leilaoId = Long.parseLong(request.getParameter("leilao_id"));
+
+                try {
+                    GerenciarLeilaoControl control = new GerenciarLeilaoControl(leilaoId);
+
+                    if (request.getParameter("acao").equals("Remover")) {
+                        control.removerLeilao();
+
+                        request.setAttribute("resultado", "Leilao removido!");
+                        request.setAttribute("main", "ResultadoOperacao.jsp");
+                    }
+                    else if (request.getParameter("acao").equals("Alterar")) {
+                        
+                    }
+                } catch (Exception e) {
+                    request.setAttribute("title", "Erro - Excecao");
+                    request.setAttribute("resultado", e.getMessage());
+                }
+            } else {
+                request.setAttribute("title", "Erro - Sem permissão");
+                request.setAttribute("resultado", "Usuário não tem permissão para realizar a operação!");
+                request.setAttribute("menuContexto", "menuEntidade.jsp");
+                request.setAttribute("main", "ResultadoOperacao.jsp");
+            }
+        }
+
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
+        view.forward(request, response);
     }
 
     /** 

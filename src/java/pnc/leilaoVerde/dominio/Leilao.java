@@ -68,7 +68,7 @@ public class Leilao implements Serializable {
     @Enumerated(EnumType.STRING)
     private EstadoLeilao estado;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="entidade_id")
     private Entidade entidade;
 
