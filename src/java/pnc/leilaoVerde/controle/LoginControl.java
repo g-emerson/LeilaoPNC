@@ -14,6 +14,7 @@ import pnc.leilaoVerde.dominio.administrativo.Usuario;
  */
 public class LoginControl extends AbstractControl {
 
+    private static final String USU_ADMIN = "admin";
     private Usuario usuario = null;
 
     /**
@@ -43,12 +44,13 @@ public class LoginControl extends AbstractControl {
         } catch (Exception e) {
             String msg = String.format("Login %s senha %s admin %s\n %s \n", login, senha, admin, e.getMessage());
             usu = null;
-            
+
             Logger log = Logger.getAnonymousLogger();
             log.severe(msg);
         } finally {
             if (em != null) {
                 em.close();
+                em = null;
             }
         }
 
@@ -64,10 +66,31 @@ public class LoginControl extends AbstractControl {
             }
         }
 
+        if (usu == null && login.equals(USU_ADMIN)) {
+            usu = new Usuario();
+
+            usu.setAdmin(true);
+            usu.setEmail(login);
+            usu.setSenha(senha);
+
+            try {
+                em = createEntityManager();
+                em.getTransaction().begin();
+                em.persist(usu);
+                em.getTransaction().commit();
+
+                autenticado = true;
+            } finally {
+                if (em != null) {
+                    em.close();
+                    em = null;
+                }
+            }
+        }
+
         if (autenticado) {
             usuario = usu;
-        }
-        else {
+        } else {
             usuario = null;
         }
 

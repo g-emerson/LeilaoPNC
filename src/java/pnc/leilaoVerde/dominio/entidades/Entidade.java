@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import pnc.leilaoVerde.dominio.EstadoLeilao;
+import pnc.leilaoVerde.dominio.Leilao;
 import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
@@ -75,6 +77,15 @@ public class Entidade extends Usuario implements Serializable {
         // foram ofertadas em nenhum leilão.
         // Por enquanto retornaremos o total de CER que possui
         return getQuantidadeCER();
+    }
+
+    public Leilao criarPropostaLeilao() {
+        Leilao leilao = new Leilao();
+
+        leilao.setEntidade(this);
+        leilao.setEstado(EstadoLeilao.PROPOSTO);
+
+        return leilao;
     }
 
     @Override

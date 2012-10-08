@@ -4,7 +4,10 @@
  */
 package pnc.leilaoVerde.controle;
 
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import pnc.leilaoVerde.dominio.Leilao;
 import pnc.leilaoVerde.dominio.entidades.Entidade;
 
 /**
@@ -13,8 +16,36 @@ import pnc.leilaoVerde.dominio.entidades.Entidade;
  */
 public class ProporLeilaoControl extends AbstractControl {
 
+    private static final Logger logger = Logger.getLogger(ProporLeilaoControl.class.getName());
     private Long entId;
     private Entidade entidade = null;
+    private int quantCER;
+    private String nomeLeilao;
+    private double lanceMinimo;
+
+    public double getLanceMinimo() {
+        return lanceMinimo;
+    }
+
+    public void setLanceMinimo(double lanceMinimo) {
+        this.lanceMinimo = lanceMinimo;
+    }
+
+    public String getNomeLeilao() {
+        return nomeLeilao;
+    }
+
+    public void setNomeLeilao(String nomeLeilao) {
+        this.nomeLeilao = nomeLeilao;
+    }
+
+    public int getQuantCER() {
+        return quantCER;
+    }
+
+    public void setQuantCER(int quantCER) {
+        this.quantCER = quantCER;
+    }
 
     public ProporLeilaoControl(Long entId) {
         this.entId = entId;
@@ -23,7 +54,7 @@ public class ProporLeilaoControl extends AbstractControl {
     private Entidade getEntidade() {
         if (entidade == null) {
             EntityManager em = createEntityManager();
-            
+
             entidade = em.find(Entidade.class, entId);
 
             em.close();
@@ -52,11 +83,66 @@ public class ProporLeilaoControl extends AbstractControl {
     public boolean isEntidadeValidada() {
         Entidade ent = getEntidade();
 
-        if ( ent != null ) {
+        if (ent != null) {
             return ent.isValidada();
-        }
-        else {
+        } else {
             return false;
+        }
+    }
+
+    private void validarDados() throws ProporLeilaoException {
+        if (getNomeLeilao() == null) {
+            throw new ProporLeilaoException("Nome do leilao não fornecido");
+        }
+
+        if (getQuantCER() <= 0) {
+            throw new ProporLeilaoException("Quantidade de CER ofertada não pode ser zero ou negativa");
+        } else if (getQuantCER() > obterCERsDisponiveis()) {
+            throw new ProporLeilaoException("Quantidade de CER ofertada maior que disponível");
+        }
+
+        if (getLanceMinimo() <= 0) {
+            throw new ProporLeilaoException("Lance mínimo não pode ser zero ou negativa");
+        }
+
+        EntityManager em = createEntityManager();
+        try {
+            Leilao leilao = (Leilao) em.createNamedQuery("Leilao.findByName")
+                .setParameter("nome", getNomeLeilao()).getSingleResult();
+
+            if (leilao != null) {
+                throw new ProporLeilaoException("Já existe leilão com este nome");
+            }
+        }
+        catch (NoResultException e) {
+
+        }
+        finally {
+            em.close();
+        }
+    }
+
+    public void cadastrarProposta() throws ProporLeilaoException {
+        validarDados();
+
+        EntityManager em = createEntityManager();
+
+        Entidade ent = getEntidade();
+        try {
+            em.getTransaction().begin();
+
+            ent = em.merge(ent);
+
+            Leilao leilao = ent.criarPropostaLeilao();
+
+            leilao.setLanceMinimo(getLanceMinimo());
+            leilao.setNomeLeilao(getNomeLeilao());
+            leilao.setQuantidadeCER(getQuantCER());
+
+            em.persist(leilao);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
     }
 }

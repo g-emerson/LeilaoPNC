@@ -51,12 +51,11 @@ public class ProporLeilao extends HttpServlet {
                 request.setAttribute("menuContexto", "menuEntidades.jsp");
                 request.setAttribute("main", "ProporLeilao.jsp");
 
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 request.setAttribute("resultado", e.getMessage());
                 request.setAttribute("title", "Erro - Proposta de Leilão");
                 request.setAttribute("menuContexto", "menuEntidades.jsp");
-                request.setAttribute("main", "ResultadoOperacao.jsp");                
+                request.setAttribute("main", "ResultadoOperacao.jsp");
             }
         }
 
@@ -74,8 +73,45 @@ public class ProporLeilao extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* TODO: Propor Leilão - Implementar lógica de processar uma proposta de leilão */
         response.setContentType("text/html;charset=UTF-8");
+
+        HttpSession session = request.getSession(false);
+        Usuario user = null;
+
+        if (session == null || session.getAttribute("usuario") == null) {
+            request.setAttribute("title", "Erro - sem sessão");
+            request.setAttribute("menuContexto", "menuGeral.jsp");
+            request.setAttribute("resultado", "Sessão encerrada ou inexistente ou usuário não logado.");
+            request.setAttribute("main", "ResultadoOperacao.jsp");
+        } else {
+            try {
+                user = (Usuario) session.getAttribute("usuario");
+                ProporLeilaoControl control = new ProporLeilaoControl(user.getId());
+                
+                int quatCER = Integer.parseInt(request.getParameter("quantCER"));
+                double lanceMinimo = Double.parseDouble(request.getParameter("lanceMinimo"));
+                String nomeLeilao = request.getParameter("nome");
+                
+                control.setLanceMinimo(lanceMinimo);
+                control.setQuantCER(quatCER);
+                control.setNomeLeilao(nomeLeilao);
+                
+                control.cadastrarProposta();
+                
+                request.setAttribute("resultado", "Cadastro realizado");
+                request.setAttribute("title", "Proposta de Leilão");
+                request.setAttribute("menuContexto", "menuEntidades.jsp");
+                request.setAttribute("main", "ResultadoOperacao.jsp");
+            } catch (Exception e) {
+                request.setAttribute("resultado", e.getMessage());
+                request.setAttribute("title", "Erro - Proposta de Leilão");
+                request.setAttribute("menuContexto", "menuEntidades.jsp");
+                request.setAttribute("main", "ResultadoOperacao.jsp");
+            }
+        }
+
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
+        view.forward(request, response);
     }
 
     /** 
