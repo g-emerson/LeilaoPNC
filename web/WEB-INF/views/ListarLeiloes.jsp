@@ -9,7 +9,14 @@
     </thead>
     <c:forEach items="${leiloesPropostos}" var="leilao">
      <tr>
+      <c:choose>
+      <c:when test="${usuario.admin}">
       <td><a href="${appRoot}/leilao/editar?leilao_id=${leilao.id}">${leilao.nomeLeilao}</a></td>
+      </c:when>
+      <c:otherwise>
+      <td>${leilao.nomeLeilao}</td>
+      </c:otherwise>
+      </c:choose>
       <td>${leilao.entidade.nome}</td>
       <td>${leilao.quantidadeCER}</td>
       <td>${leilao.lanceMinimo}</td>
@@ -24,7 +31,14 @@
     </thead>
     <c:forEach items="${leiloesAprovados}" var="leilao">
      <tr>
+       <c:choose>
+      <c:when test="${usuario.admin}">
       <td><a href="${appRoot}/leilao/editar?leilao_id=${leilao.id}">${leilao.nomeLeilao}</a></td>
+      </c:when>
+      <c:otherwise>
+      <td>${leilao.nomeLeilao}</td>
+      </c:otherwise>
+      </c:choose>
       <td>${leilao.entidade.nome}</td>
       <td>${leilao.quantidadeCER}</td>
       <td>${leilao.lanceMinimo}</td>

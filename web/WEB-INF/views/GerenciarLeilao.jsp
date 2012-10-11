@@ -11,13 +11,13 @@
     <label ><span>Quantidade de CER oferecida: </span><input type="text" name="quantCER" value="${leilao.quantidadeCER}"/></label><br/>
     <label ><span>Valor mínimo do lance: </span><input type="int" name="lanceMinimo" value="${leilao.lanceMinimo}"/></label><br />
     <fmt:formatDate  value="${leilao.dataInicial}" pattern="dd/MM/yyyy" var="fmtData" />
-    <label ><span>Data Inicial: </span><input type="date" name="dataInicial" value="${fmtData}"/></label><br/>
+    <label ><span>Data Inicial: </span><input type="text" name="dataInicial" value="${fmtData}"/></label><br/>
     <fmt:formatDate  value="${leilao.horaInicial}" pattern="HH:mm" var="fmtData" />
-    <label ><span>Hora Inicial: </span><input type="time" name="horaInicial" value="${fmtData}" /></label><br/>
+    <label ><span>Hora Inicial: </span><input type="text" name="horaInicial" value="${fmtData}" /></label><br/>
     <fmt:formatDate  value="${leilao.dataFinal}" pattern="dd/MM/yyyy" var="fmtData" />
-    <label ><span>Data de Término: </span><input type="date" name="dataFinal" value="${fmtData}" /></label><br/>
+    <label ><span>Data de Término: </span><input type="text" name="dataFinal" value="${fmtData}" /></label><br/>
     <fmt:formatDate  value="${leilao.horaFinal}" pattern="HH:mm" var="fmtData" />
-    <label ><span>Hora de Término: </span><input type="time" name="horaFinal" value="${fmtData}" /></label><br/>
+    <label ><span>Hora de Término: </span><input type="text" name="horaFinal" value="${fmtData}" /></label><br/>
     <input type="submit" name="acao" value="Alterar" onclick="return confirm('Realmente deseja realizar a alteração ?');" />
     <input type="submit" name="acao" value="Remover" onclick="return confirm('Realmente deseja remover o leilao ?');" />
    </form>
