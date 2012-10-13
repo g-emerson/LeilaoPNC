@@ -6,6 +6,7 @@ package pnc.leilaoVerde.controle;
 
 import javax.persistence.EntityManager;
 import pnc.leilaoVerde.dominio.entidades.Entidade;
+import pnc.leilaoVerde.dominio.entidades.EstadoEntidade;
 
 /**
  *
@@ -20,7 +21,7 @@ public class CadastrarEntidadeControl extends AbstractControl {
         if (entidade == null) {
             entidade = new Entidade();
             entidade.setAdmin(false);
-            entidade.setValidada(false);
+            entidade.setStatus(EstadoEntidade.PENDENTE);
         }
 
         return entidade;
