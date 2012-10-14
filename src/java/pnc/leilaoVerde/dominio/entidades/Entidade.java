@@ -7,6 +7,8 @@ package pnc.leilaoVerde.dominio.entidades;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import pnc.leilaoVerde.dominio.EstadoLeilao;
@@ -31,6 +33,13 @@ public class Entidade extends Usuario implements Serializable {
     private String cnpj;
     @Column
     private int quantidadeCER;
+    @ManyToOne
+    @JoinColumn(name="localidade_id")
+    private Localidade localidade;
+    @ManyToOne
+    @JoinColumn(name="segmentoMercado_id")
+    private SegmentoMercado segmentoMercado;
+    
     @Column
     private EstadoEntidade status;
 
@@ -58,6 +67,22 @@ public class Entidade extends Usuario implements Serializable {
         this.quantidadeCER = quantidadeCER;
     }
 
+    public Localidade getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(Localidade localidade) {
+        this.localidade = localidade;
+    }
+
+    public SegmentoMercado getSegmentoMercado() {
+        return segmentoMercado;
+    }
+
+    public void setSegmentoMercado(SegmentoMercado segmentoMercado) {
+        this.segmentoMercado = segmentoMercado;
+    }
+    
     public EstadoEntidade getStatus() {
         return status;
     }
