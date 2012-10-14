@@ -4,8 +4,12 @@
  */
 package pnc.leilaoVerde.controle;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import pnc.leilaoVerde.dominio.entidades.Entidade;
+import pnc.leilaoVerde.dominio.entidades.SegmentoMercado;
 
 /**
  *
@@ -15,7 +19,10 @@ public class CadastrarEntidadeControl extends AbstractControl {
 
     private Entidade entidade = null;
     private boolean cadastrou = false;
+    
+    private Long idSegMe;
 
+    
     private Entidade getEntidade() {
         if (entidade == null) {
             entidade = new Entidade();
@@ -24,6 +31,10 @@ public class CadastrarEntidadeControl extends AbstractControl {
         }
 
         return entidade;
+    }
+
+    public void setIdSegMe(Long idSegMe) {
+        this.idSegMe = idSegMe;
     }
 
     public void setCNPJ(String cnpj) {
@@ -68,10 +79,28 @@ public class CadastrarEntidadeControl extends AbstractControl {
 
         em.getTransaction().begin();
         em.persist(ent);
+        
+        SegmentoMercado segMe =  em.find(SegmentoMercado.class, idSegMe);
+        ent.setSegmentoMercado(segMe);
+       
         em.getTransaction().commit();
 
         em.close();
         
         cadastrou = true;
+    }
+    public List<SegmentoMercado> getListaSegmentos()
+    {
+         List<SegmentoMercado> list = new ArrayList<SegmentoMercado>();
+
+        EntityManager em = createEntityManager();
+
+        Query query = em.createNamedQuery("SegmentoMercado.findAll");
+
+        list = query.getResultList();
+
+        em.close();
+        
+        return list;
     }
 }

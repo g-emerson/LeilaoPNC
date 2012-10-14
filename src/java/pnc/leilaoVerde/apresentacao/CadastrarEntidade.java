@@ -5,6 +5,7 @@
 package pnc.leilaoVerde.apresentacao;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import pnc.leilaoVerde.controle.CadastrarEntidadeControl;
+import pnc.leilaoVerde.dominio.entidades.SegmentoMercado;
 
 /**
  *
@@ -30,7 +32,15 @@ public class CadastrarEntidade extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        CadastrarEntidadeControl cadEnt = new CadastrarEntidadeControl();
+        
         try {
+            
+            List<SegmentoMercado> lista = cadEnt.getListaSegmentos();
+            
+            request.setAttribute("listaSegmentoMercado", lista);
+            
             request.setAttribute("title", "Cadastro de Entidade");
             request.setAttribute("menuContexto", "menuGeral.jsp");
             request.setAttribute("main", "CadastrarEntidade.jsp");
@@ -59,7 +69,7 @@ public class CadastrarEntidade extends HttpServlet {
             cadEnt.setCNPJ(request.getParameter("cnpj"));
             cadEnt.setNome(request.getParameter("nome"));
             cadEnt.setQuantidadeCER(Integer.parseInt(request.getParameter("quantCER")));
-
+            cadEnt.setIdSegMe(Long.parseLong(request.getParameter("segmentoMercado")));
             // TODO: CadastrarEntidade - Testar se a senha enviada é igual à senha de confirmação
             cadEnt.setSenha(request.getParameter("passwd"));
             cadEnt.setEmail(request.getParameter("email"));
