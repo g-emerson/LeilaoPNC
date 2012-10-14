@@ -15,18 +15,15 @@
        <td>${ent.cnpj}</td>
        <td>${ent.quantidadeCER}</td>
        <td id="validacao_${ent.id}">
-       <c:choose>
-        <c:when test="${ent.validada}">Validada</c:when>
-         <c:otherwise>
-          <c:choose>
-           <c:when test="${usuario.admin}">
-            <input type="button" value="OK" onclick='validarEntidade("${appRoot}",${ent.id})' />
-            <input type="button" value="Reprovada" onclick='reprovarEntidade("${appRoot}",${ent.id})' />
-           </c:when>
-           <c:otherwise>Não validada</c:otherwise>
-          </c:choose>
-         </c:otherwise>
-        </c:choose>
+        ${ent.status.texto}
+        <c:if test="${usuario.admin}">
+         <c:if test="${ent.status != 'VALIDADA'}">
+          &nbsp;<input type="button" value="Validar" onclick='validarEntidade("${appRoot}",${ent.id},true)' />
+         </c:if>
+         <c:if test="${ent.status != 'REPROVADA'}">
+          &nbsp;<input type="button" value="Reprovar" onclick='validarEntidade("${appRoot}",${ent.id},false)' />
+         </c:if>
+        </c:if>
        </td>
       </tr>
      </c:forEach>

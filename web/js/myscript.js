@@ -26,8 +26,8 @@ function createXMLHttpRequest() {
 }
 
 // Função que trata da validação de uma entidade
-function validarEntidade(appRoot, entId) {
-    xmlhttp = createXMLHttpRequest();
+function validarEntidade(appRoot, entId, validar) {
+    var xmlhttp = createXMLHttpRequest();
 
     if ( xmlhttp == null ) {
         return;
@@ -39,7 +39,7 @@ function validarEntidade(appRoot, entId) {
             data = eval( '('+xmlhttp.responseText+')' );
             if ( data.resultado ) {
                 cell = document.getElementById("validacao_"+entId);
-                cell.innerHTML = "Validada";
+                cell.innerHTML = data.status;
             }
             else {
                 alert("Validação da entidade falhou\n" + data.erro_msg);
@@ -49,5 +49,5 @@ function validarEntidade(appRoot, entId) {
     
     xmlhttp.open("POST",appRoot + "/validarEntidade",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xmlhttp.send("entId="+entId+"&validar=true");
+    xmlhttp.send("entId="+entId+"&validar="+validar);
 }

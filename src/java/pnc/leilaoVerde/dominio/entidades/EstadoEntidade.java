@@ -9,26 +9,17 @@ package pnc.leilaoVerde.dominio.entidades;
  * @author giovani
  */
 public enum EstadoEntidade {
+    PENDENTE("Pendente"),
+    VALIDADA("Validada"),
+    REPROVADA("Reprovada");
+    
+    private final String texto;
 
-    PENDENTE {
-
-        @Override
-        public String toString() {
-            return "Pendente";
-        }
-    },
-    VALIDADA {
-
-        @Override
-        public String toString() {
-            return "Reprovada";
-        }
-    },
-    REPROVADA {
-
-        @Override
-        public String toString() {
-            return "Reprovada";
-        }
+    private EstadoEntidade(String texto) {
+        this.texto = texto;
+    }
+    
+    public String getTexto() {
+        return texto;
     }
 }

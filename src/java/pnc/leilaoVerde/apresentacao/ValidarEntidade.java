@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import pnc.leilaoVerde.controle.ValidarEntidadeControl;
 import pnc.leilaoVerde.dominio.administrativo.Usuario;
+import pnc.leilaoVerde.dominio.entidades.EstadoEntidade;
 
 /**
  *
@@ -42,15 +43,15 @@ public class ValidarEntidade extends HttpServlet {
                     boolean validar = Boolean.parseBoolean(request.getParameter("validar"));
                     ValidarEntidadeControl control = new ValidarEntidadeControl();
 
-                    // TODO: Implementar a função de reprovar. Em reprovar o que
-                    // acontece com a Entidade ???
                     if (entId != null) {
-                        control.validarEntidade(entId);
+                        EstadoEntidade status = control.validarEntidade(entId, validar);
 
-                        out.printf("{ \"resultado\": true, \"entId\":\"%d\" }",
-                                entId);
+                        out.printf("{ \"resultado\": true");
+                        out.printf(", \"entId\":\"%d\"", entId);
+                        out.printf(", \"status\":\"%s\" }", status.getTexto());
                     } else {
-                        out.print("{ \"resultado\": false, \"entId\":\"nula\" }");
+                        out.printf("{ \"resultado\": false, \"erro_msg\":\"%s\" }",
+                            "Id de entidade não fornecido");
                     }
                 } else {
                     out.printf("{ \"resultado\": false, \"erro_msg\":\"%s\" }",
