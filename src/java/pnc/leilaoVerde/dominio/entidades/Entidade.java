@@ -27,14 +27,12 @@ public class Entidade extends Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(length = 64)
+    @Column(length = 64, unique=true)
     private String nome;
-    @Column(length = 15)
+    @Column(length = 15, unique=true)
     private String cnpj;
     @Column
     private int quantidadeCER;
-    @Column
-    private boolean validada;
     @ManyToOne
     @JoinColumn(name="localidade_id")
     private Localidade localidade;
@@ -42,6 +40,9 @@ public class Entidade extends Usuario implements Serializable {
     @JoinColumn(name="segmentoMercado_id")
     private SegmentoMercado segmentoMercado;
     
+    @Column
+    private EstadoEntidade status;
+
     public String getCnpj() {
         return cnpj;
     }
@@ -81,13 +82,26 @@ public class Entidade extends Usuario implements Serializable {
     public void setSegmentoMercado(SegmentoMercado segmentoMercado) {
         this.segmentoMercado = segmentoMercado;
     }
+    
+    public EstadoEntidade getStatus() {
+        return status;
+    }
+
+    public void setStatus(EstadoEntidade status) {
+        this.status = status;
+    }
 
     public boolean isValidada() {
-        return validada;
+        return status == EstadoEntidade.VALIDADA;
     }
 
     public void setValidada(boolean validada) {
-        this.validada = validada;
+        if ( validada ) {
+            this.status = EstadoEntidade.VALIDADA;
+        }
+        else {
+            this.status = EstadoEntidade.REPROVADA;
+        }
     }
 
     /**
