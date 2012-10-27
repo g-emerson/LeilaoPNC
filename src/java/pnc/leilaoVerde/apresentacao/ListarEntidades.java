@@ -51,7 +51,6 @@ public class ListarEntidades extends HttpServlet {
             if (session != null) {
                 usu = (Usuario) session.getAttribute("usuario");
             }
-
             if ( usu != null ) {
                 if (usu.isAdmin()) {
                     request.setAttribute("menuContexto", "menuAdministrador.jsp");
