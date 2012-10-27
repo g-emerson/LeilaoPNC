@@ -8,5 +8,4 @@ request.setAttribute("menuContexto", "menuGeral.jsp");
 request.setAttribute("breadcrumb", "menuEntidades.jsp");
 request.setAttribute("main", "Login.jsp");
 %>
-
 <jsp:include page="WEB-INF/views/leilao-template.jsp" />
