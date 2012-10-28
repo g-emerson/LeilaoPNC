@@ -34,10 +34,8 @@ public class Entidade extends Usuario implements Serializable {
     @Column
     private int quantidadeCER;
     @ManyToOne
-    @JoinColumn(name="localidade_id")
     private Localidade localidade;
     @ManyToOne
-    @JoinColumn(name="segmentoMercado_id")
     private SegmentoMercado segmentoMercado;
     
     @Column

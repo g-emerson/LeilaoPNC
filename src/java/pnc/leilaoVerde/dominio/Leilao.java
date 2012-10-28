@@ -6,7 +6,6 @@ package pnc.leilaoVerde.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,7 +29,10 @@ import pnc.leilaoVerde.dominio.entidades.Entidade;
 @NamedQueries({
     @NamedQuery(name="Leilao.findByName", query="SELECT lei from Leilao lei where lei.nomeLeilao = :nome"),
     @NamedQuery(name="Leilao.findPropostos", query="SELECT lei from Leilao lei where lei.estado = 'PROPOSTO'"),
-    @NamedQuery(name="Leilao.findAtivos", query="SELECT lei from Leilao lei where lei.estado != 'PROPOSTO'")
+    @NamedQuery(name="Leilao.findAtivos", query="SELECT lei from Leilao lei where lei.estado != 'PROPOSTO'"),
+    @NamedQuery(name="Leilao.findDaEntidade",
+        query="SELECT lei from Leilao lei where lei.entidade.id = :entid"),
+    @NamedQuery(name="Leilao.findAtivosDeOutrasEntidades", query="SELECT lei from Leilao lei where lei.entidade.id != :entid")
 })
 public class Leilao implements Serializable {
 
@@ -69,7 +71,6 @@ public class Leilao implements Serializable {
     private EstadoLeilao estado;
 
     @ManyToOne
-    @JoinColumn(name="entidade_id")
     private Entidade entidade;
 
     public Long getId() {

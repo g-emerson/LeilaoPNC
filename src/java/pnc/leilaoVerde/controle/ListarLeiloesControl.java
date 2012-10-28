@@ -42,4 +42,18 @@ public class ListarLeiloesControl extends AbstractControl {
 
         return list;
     }
+    
+    public List<Leilao> obterLeiloesDaEntidade(Long idEnt) {
+        List<Leilao> list;
+
+        EntityManager em = createEntityManager();
+
+        Query query = em.createNamedQuery("Leilao.findAtivos");
+
+        list = query.getResultList();
+
+        em.close();
+
+        return list;        
+    }
 }
