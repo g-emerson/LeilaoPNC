@@ -7,6 +7,7 @@
     <class>pnc.leilaoVerde.dominio.administrativo.Usuario</class>
     <class>pnc.leilaoVerde.dominio.entidades.SegmentoMercado</class>
     <class>pnc.leilaoVerde.dominio.entidades.Localidade</class>
+    <class>pnc.leilaoVerde.dominio.entidades.Lance</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.username" value="leilaoPNC"/>

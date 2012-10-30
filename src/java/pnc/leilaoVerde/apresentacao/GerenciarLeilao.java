@@ -5,9 +5,9 @@
 package pnc.leilaoVerde.apresentacao;
 
 import java.io.IOException;
+import java.rmi.ServerException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -159,6 +159,7 @@ public class GerenciarLeilao extends HttpServlet {
                     request.setAttribute("title", "Erro - Excecao");
                     request.setAttribute("resultado", e.getMessage());
                     request.setAttribute("main", "ResultadoOperacao.jsp");
+                    throw new ServerException("erro", e);
                 }
             } else {
                 request.setAttribute("title", "Erro - Sem permissão");
