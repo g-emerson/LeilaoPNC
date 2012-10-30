@@ -52,7 +52,7 @@ public class CadastrarEntidadeControl extends AbstractControl {
         Entidade ent = getEntidade();
         ent.setQuantidadeCER(quantidadeCER);
     }
-
+//so pra testar a nova IDE
     public void setEmail(String email) {
         Entidade ent = getEntidade();
         ent.setEmail(email);
