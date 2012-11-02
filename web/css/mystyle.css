@@ -35,16 +35,19 @@ ol, ul {
 	padding: 0px;
 	margin: 0px;
 }
+
 /* FIM de CSS RESET */
 body {
 	padding: 1ex;
-	background-color: #006600;
+	background-color: #004400;
 	line-height: 1;
 	font: 13px normal Calibri, Tahoma, Verdana;
 }
 
 a{
 	text-decoration: none;
+	color: #702500;
+	font-weight: bold;
 }
 
 a:hover{
@@ -73,13 +76,14 @@ header h1 {
 }
 
 header h1 ,#breadcrumb li, #breadcrumb li a{
-	color: #AAFFAA;
+	color: #ccffcc;
 }
+
 /* Item eliminado
 #nav_prin {
 	clear:both;
 	margin: 1ex 0;
-	border-bottom: thick solid #AAFFAA;
+	border-bottom: thick solid #ccffcc;
 }
 
 #nav_prin  h2 {
@@ -92,7 +96,7 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 
 #nav_prin li a {
 	display: inline-block;
-	background-color: #afa;
+	background-color: #ccffcc;
 	padding: 1ex;
 	border-top-left-radius: 12px;
 	border-bottom-right-radius: 6px;
@@ -102,7 +106,7 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 }*/
 
 #breadcrumb{
-	border: 0px solid #AAFFAA;
+	border: 0px solid #ccffcc;
 	border-width: thin 0px thin 0px;
 	margin: 1ex 0;
 	padding: 1ex 0;
@@ -123,7 +127,7 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 }
 
 #contexto {
-	background-color: #AAFFAA;
+	background-color: #ccffcc;
 	padding: 1ex;
 }
 
@@ -139,26 +143,26 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 #nav_contexto {
 	width:30ex;
 	float:left;
-	border: 0.3ex solid #060;
+	border: 0.3ex solid #004400;
 	padding: 1ex;
 }
 
 #nav_contexto h2 {
 	font-weight: bold;
 	font-size: larger;
-	color: #060;
+	color: #004400;
 	text-align: center;
-	border-bottom: 0.3ex #060 solid;
+	border-bottom: 0.3ex #004400 solid;
 }
 
 #nav_contexto a {
 	padding: 1ex 0ex;
 	margin: 1ex 0ex;
-	border-top: solid thin #060;
-	border-bottom: solid thin #060;
+	border-top: solid thin #004400;
+	border-bottom: solid thin #004400;
 	text-align: center;
 	display: block;
-	color: #060;
+	color: #004400;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -169,7 +173,7 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 
 #sc_contexto{
 	margin-left:33ex;
-	border: 0.3ex solid #060;
+	border: 0.3ex solid #004400;
 	padding: 1ex;
 }
 
@@ -185,8 +189,8 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 
 footer{
 	clear:both;
-	background-color: #060;
-	color: #afa;
+	background-color: #004400;
+	color: #ccffcc;
 	text-align: center;
 	font-size: small;
 	font-family: Arial, sans;
@@ -204,13 +208,16 @@ table {
 }
 
 td {
-    border: solid black thin;
+    margin: 15ex;
     padding: 1ex;
     text-align: center;
+    border-style: none;
 }
 
 thead td {
     font-weight: bold;
+    background-color: #004400;
+    color: #CCffCC;
 }
 
 @media screen and (max-width:640px) {
@@ -218,7 +225,7 @@ thead td {
 		display: none;		
 	}	
 	header h1 {
-		color: #afa;
+		color: #ccffcc;
 		font-weight: bold;
 		font-size: large;
 		text-align: center;
@@ -228,13 +235,13 @@ thead td {
 	#nav_contexto {
 		width: auto;
 		float: none;
-		border: 0.3ex solid #060;
+		border: 0.3ex solid #004400;
 		padding: 1ex;
 	}
 	
 	#sc_contexto{
 		margin-left: 0ex;
-		border: 0.3ex solid #060;
+		border: 0.3ex solid #004400;
 		padding: 1ex;
 	}
 	
