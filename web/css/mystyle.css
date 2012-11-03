@@ -17,6 +17,8 @@ body {
 
 a{
 	text-decoration: none;
+	color: #702500;
+	font-weight: bold;
 }
 
 a:hover{
@@ -51,7 +53,7 @@ header h1 {
 }
 
 header h1 ,#breadcrumb li, #breadcrumb li a{
-	color: #AAFFAA;
+	color: #ccffcc;
 }
 
 #breadcrumb{
@@ -168,13 +170,16 @@ table {
 }
 
 td {
-    border: solid black thin;
+    margin: 15ex;
     padding: 1ex;
     text-align: center;
+    border-style: none;
 }
 
 thead td {
     font-weight: bold;
+    background-color: #004400;
+    color: #CCffCC;
 }
 
 @media screen and (max-width:640px) {
@@ -182,7 +187,7 @@ thead td {
 		display: none;		
 	}	
 	header h1 {
-		color: #afa;
+		color: #ccffcc;
 		font-weight: bold;
 		font-size: large;
 		text-align: center;
@@ -192,13 +197,13 @@ thead td {
 	#nav_contexto {
 		width: auto;
 		float: none;
-		border: 0.3ex solid #060;
+		border: 0.3ex solid #004400;
 		padding: 1ex;
 	}
 	
 	#sc_contexto{
 		margin-left: 0ex;
-		border: 0.3ex solid #060;
+		border: 0.3ex solid #004400;
 		padding: 1ex;
 	}
 	

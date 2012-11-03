@@ -42,7 +42,7 @@ public class ListarLeiloesControl extends AbstractControl {
 
         return list;
     }
-    
+
     public List<Leilao> obterLeiloesDaEntidade(Long idEnt) {
         List<Leilao> list;
 
@@ -54,6 +54,6 @@ public class ListarLeiloesControl extends AbstractControl {
 
         em.close();
 
-        return list;        
+        return list;
     }
 }
