@@ -11,8 +11,7 @@ ol, ul {
 
 body {
 	padding: 1ex;
-	background-color: #006600;
-	line-height: 1;
+	background: url('../images/whiteNoise.png') repeat #69AA69;
 	font: 13px normal Calibri, Tahoma, Verdana;
 }
 
@@ -26,6 +25,11 @@ a:hover{
 
 .clear-float {
 	clear: both;
+}
+
+#logo, section{
+	box-shadow: 0px 3px 5px #000;
+	border-radius: .7em;
 }
 
 #logo {
@@ -42,40 +46,16 @@ header h1 {
 	font-weight: bold;
 	font-size: xx-large;
 	text-align: center;
-	padding: 0.8em;
+	padding: .8em;
+	text-shadow: 0px 3px 5px #000;
 }
 
 header h1 ,#breadcrumb li, #breadcrumb li a{
 	color: #AAFFAA;
 }
-/* Item eliminado
-#nav_prin {
-	clear:both;
-	margin: 1ex 0;
-	border-bottom: thick solid #AAFFAA;
-}
-
-#nav_prin  h2 {
-	display:none;
-}
-
-#nav_prin li {
-	display: inline-block;
-}
-
-#nav_prin li a {
-	display: inline-block;
-	background-color: #afa;
-	padding: 1ex;
-	border-top-left-radius: 12px;
-	border-bottom-right-radius: 6px;
-	text-decoration: none;
-	font-weight: bold;
-	color: #060;
-}*/
 
 #breadcrumb{
-	border: 0px solid #AAFFAA;
+	border: 0px solid #AAFFAA; /* Mesma cor do #contexto */
 	border-width: thin 0px thin 0px;
 	margin: 1ex 0;
 	padding: 1ex 0;
@@ -96,12 +76,12 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 }
 
 #contexto {
-	background-color: #AAFFAA;
-	padding: 1ex;
+	background-color: #AAFFAA; /* Mesma cor da borda de breadcumb */
+	padding: 1em;
 }
 
 #contexto:after {
-    content: ".";
+    content: "";
     display: block;
     visibility: hidden;
     clear: both;
@@ -109,29 +89,42 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
     line-height: 1px;
 }
 
+#nav_contexto, #nav_contexto a, #nav_contexto h2{
+	color: #006600; /* Mesma cor da borda abaixo */
+}
+
+#nav_contexto, #nav_contexto a, #nav_contexto h2, #sc_contexto{
+	border-style: solid;
+	border-color: #88AA88; /* Mesma cor de A acima */
+	border-width: 0px;
+}
+
 #nav_contexto {
-	width:30ex;
-	float:left;
-	border: 0.3ex solid #060;
+	width: 30ex;
+	float: left;
 	padding: 1ex;
+}
+
+#nav_contexto, #sc_contexto{
+	background: #CCFFCC url('../images/whiteNoise.png') repeat;
+	border-top-color: #DDFFDD;
+	border-width: 0px;
+	box-shadow: 0px 0px .5em #999;
+	padding: 1em;
 }
 
 #nav_contexto h2 {
 	font-weight: bold;
 	font-size: larger;
-	color: #060;
 	text-align: center;
-	border-bottom: 0.3ex #060 solid;
+	border-bottom-width: thin;
 }
 
 #nav_contexto a {
-	padding: 1ex 0ex;
 	margin: 1ex 0ex;
-	border-top: solid thin #060;
-	border-bottom: solid thin #060;
+	border-width: thin 0px thin 0px; 
 	text-align: center;
 	display: block;
-	color: #060;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -141,9 +134,7 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 }
 
 #sc_contexto{
-	margin-left:33ex;
-	border: 0.3ex solid #060;
-	padding: 1ex;
+	margin-left:36ex;
 }
 
 #sc_contexto p {
@@ -158,12 +149,12 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 
 footer{
 	clear:both;
-	background-color: #060;
+	/* background-color: #060; */
 	color: #afa;
 	text-align: center;
 	font-size: small;
 	font-family: Arial, sans;
-	border: thin solid black;
+	/* border: thin solid black; */
 	padding: 1ex;
 }
 
@@ -225,3 +216,29 @@ thead td {
 		max-width: 120px;
 	}
 }
+
+/* Item eliminado
+#nav_prin {
+	clear:both;
+	margin: 1ex 0;
+	border-bottom: thick solid #AAFFAA;
+}
+
+#nav_prin  h2 {
+	display:none;
+}
+
+#nav_prin li {
+	display: inline-block;
+}
+
+#nav_prin li a {
+	display: inline-block;
+	background-color: #afa;
+	padding: 1ex;
+	border-top-left-radius: 12px;
+	border-bottom-right-radius: 6px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #060;
+}*/
