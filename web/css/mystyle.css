@@ -11,18 +11,17 @@ ol, ul {
 
 body {
 	padding: 1ex;
-	background: url('../images/whiteNoise.png') repeat #69AA69;
 	font: 13px normal Calibri, Tahoma, Verdana;
+}
+
+body, #nav_contexto a:hover{
+	background: url('../images/whiteNoise.png') repeat #69AA69;
 }
 
 a{
 	text-decoration: none;
 	color: #702500;
 	font-weight: bold;
-}
-
-a:hover{
-	text-decoration: underline;
 }
 
 .clear-float {
@@ -73,6 +72,10 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 	font-weight: bold;
 }
 
+#breadcrumb a:hover {
+	text-decoration: underline;
+}
+
 #breadcrumb li a:after {
 	content: " > ";
 }
@@ -82,7 +85,7 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 	padding: 1em;
 }
 
-#contexto:after {
+#contexto:after { /* Hack para alinhar o fim do na navegação e do conteúdo */
     content: "";
     display: block;
     visibility: hidden;
@@ -129,10 +132,6 @@ header h1 ,#breadcrumb li, #breadcrumb li a{
 	display: block;
 	font-weight: bold;
 	text-decoration: none;
-}
-
-#nav_contexto a:hover {
-	text-decoration: underline;
 }
 
 #sc_contexto{

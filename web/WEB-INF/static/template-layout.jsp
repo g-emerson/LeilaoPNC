@@ -14,7 +14,11 @@
   </nav>		
   <section id="contexto" >
   <nav id="nav_contexto">
-   <h2>Menu</h2><jsp:include page="${requestScope.menuContexto}" />
+<%--
+	/**
+	 * @todo não dá pra usar um ${appRoot}??
+	 */
+--%>   <h2>Menu</h2><jsp:include page="../static/${requestScope.menuContexto}" />
   </nav>
   <article id="sc_contexto"><jsp:include page="${requestScope.main}" />
   </article>
