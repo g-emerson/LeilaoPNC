@@ -6,6 +6,6 @@
    <ul><%-- // TODO: Codificar URL para garantir passagem de informação
 		de sessão
 	--%>
-    <li><a href="${appRoot}/login">Realizar Login</a></li>
-    <li><a href="${appRoot}/cadastrar">Cadastrar Entidade</a></li>
+    <li><a href="${appRoot}/login">Login</a></li>
+    <li><a href="${appRoot}/cadastrar">Cadastrar</a></li>
    </ul>

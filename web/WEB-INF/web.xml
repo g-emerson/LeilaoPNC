@@ -20,6 +20,10 @@
             <trim-directive-whitespaces>true</trim-directive-whitespaces>
         </jsp-property-group>
     </jsp-config>
+    <listener>
+        <description>RequestListener</description>
+        <listener-class>pnc.leilaoVerde.persistencia.WebAppListener</listener-class>
+    </listener>
     <servlet>
         <description>Servlet controlador do caso de uso Propor Leilão</description>
         <servlet-name>ProporLeilao</servlet-name>

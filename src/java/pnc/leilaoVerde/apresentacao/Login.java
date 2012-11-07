@@ -14,78 +14,81 @@ import pnc.leilaoVerde.controle.LoginControl;
 import pnc.leilaoVerde.dominio.administrativo.Usuario;
 
 /**
- *
  * @author giovani
  */
 public class Login extends HttpServlet {
 
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("title", "Login");
-        request.setAttribute("menuContexto", "menuGeral.jsp");
-        request.setAttribute("main", "Login.jsp");
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
-        rd.forward(request, response);
-    }
+	/**
+	 * Handles the HTTP
+	 * <code>GET</code> method.
+	 *
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setAttribute("title", "Login");
+		request.setAttribute("menuContexto", "menuGeral.jsp");
+		request.setAttribute("main", "Login.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
+		rd.forward(request, response);
+	}
 
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+	/**
+	 * Handles the HTTP
+	 * <code>POST</code> method.
+	 *
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
 
-        String senha = request.getParameter("passwd");
-        String login = request.getParameter("email");
-        boolean autenticado = false;
+		String senha = request.getParameter("passwd");
+		String login = request.getParameter("email");
+		boolean autenticado = false;
 
-        LoginControl lc = new LoginControl();
+		LoginControl lc = new LoginControl();
 
-        autenticado = lc.autenticarUsuario(login, senha);
+		autenticado = lc.autenticarUsuario(login, senha);
 
-        if (autenticado) {
-            Usuario usu = lc.getUsuario();
-            request.getSession().setAttribute("usuario", usu);
+		if (autenticado) {
+			Usuario usu = lc.getUsuario();
+			request.getSession().setAttribute("usuario", usu);
 
-            if (usu.isAdmin()) {
-                request.setAttribute("menuContexto", "menuAdministrador.jsp");
-            } else {
-                request.setAttribute("menuContexto", "menuEntidades.jsp");
-            }
-            request.setAttribute("resultado", "Bem vindo !!");
-        }
-        else {
-            request.setAttribute("menuContexto", "menuGeral.jsp");
-            request.setAttribute("resultado", "Autenticação falhou !!");
-        }
+			if (usu.isAdmin()) {
+				request.setAttribute("menuContexto", "menuAdministrador.jsp");
+			} else {
+				request.setAttribute("menuContexto", "menuEntidades.jsp");
+			}
+			request.setAttribute("resultado", "Bem vindo !!");
+		} else {
+			request.setAttribute("menuContexto", "menuGeral.jsp");
+			request.setAttribute("resultado", "Autenticação falhou !!");
+		}
 
-        request.setAttribute("title", "Login");
+		request.setAttribute("title", "Login");
 
-        request.setAttribute("main", "ResultadoOperacao.jsp");
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
-        rd.forward(request, response);
-    }
+		request.setAttribute("main", "ResultadoOperacao.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
+		rd.forward(request, response);
+	}
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
+	/**
+	 * Returns a short description of the servlet.
+	 *
+	 * @return a String containing servlet description
+	 */
+	@Override
+	public String getServletInfo() {
+		return "Short description";
+	}
 }
