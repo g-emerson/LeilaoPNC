@@ -16,44 +16,22 @@ import pnc.leilaoVerde.dominio.Leilao;
 public class ListarLeiloesControl extends AbstractControl {
 
     public List<Leilao> obterLeiloesPropostos() {
-        List<Leilao> list;
-
-        EntityManager em = createEntityManager();
-
-        Query query = em.createNamedQuery("Leilao.findPropostos");
-
-        list = query.getResultList();
-
-        em.close();
-
-        return list;
+        return Leilao.getLeiloesPropostos();
     }
 
     public List<Leilao> obterLeiloesAtivos() {
-        List<Leilao> list;
-
-        EntityManager em = createEntityManager();
-
-        Query query = em.createNamedQuery("Leilao.findAtivos");
-
-        list = query.getResultList();
-
-        em.close();
-
-        return list;
+        return Leilao.getLeiloesAprovados();
     }
 
     public List<Leilao> obterLeiloesDaEntidade(Long idEnt) {
-        List<Leilao> list;
-
-        EntityManager em = createEntityManager();
-
-        Query query = em.createNamedQuery("Leilao.findAtivos");
-
-        list = query.getResultList();
-
-        em.close();
-
-        return list;
+        return Leilao.getLeiloesDaEntidade(idEnt);
+    }
+    
+    public List<Leilao> obterLeiloesFinalizados() {
+        return Leilao.getLeiloesFinalizados();
+    }
+    
+    public List<Leilao> obterLeiloesDeOutrasEntidades(Long idEnt) {
+        return Leilao.getLeiloesAtivosDeOutrasEntidades(idEnt);
     }
 }
