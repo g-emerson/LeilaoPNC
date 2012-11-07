@@ -6,8 +6,10 @@ package pnc.leilaoVerde.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -16,9 +18,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Query;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import pnc.leilaoVerde.dominio.entidades.Entidade;
+import pnc.leilaoVerde.persistencia.Persistencia;
 
 /**
  *
@@ -26,12 +30,23 @@ import pnc.leilaoVerde.dominio.entidades.Entidade;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Leilao.findByName", query="SELECT lei from Leilao lei where lei.nomeLeilao = :nome"),
-    @NamedQuery(name="Leilao.findPropostos", query="SELECT lei from Leilao lei where lei.estado = 'PROPOSTO'"),
-    @NamedQuery(name="Leilao.findAtivos", query="SELECT lei from Leilao lei where lei.estado != 'PROPOSTO'"),
+    @NamedQuery(name="Leilao.findByName", query="SELECT lei from Leilao lei WHERE lei.nomeLeilao = :nome"),
+    @NamedQuery(name="Leilao.findPropostos", query="SELECT lei from Leilao lei"
+        + " WHERE lei.estado = 'PROPOSTO'"
+        + " ORDER BY lei.nomeLeilao"),
+    @NamedQuery(name="Leilao.findAtivos", query="SELECT lei from Leilao lei"
+        + " WHERE lei.estado != 'PROPOSTO'"
+        + " ORDER BY lei.nomeLeilao"),
     @NamedQuery(name="Leilao.findDaEntidade",
-        query="SELECT lei from Leilao lei where lei.entidade.id = :entid"),
-    @NamedQuery(name="Leilao.findAtivosDeOutrasEntidades", query="SELECT lei from Leilao lei where lei.entidade.id != :entid")
+        query="SELECT lei from Leilao lei WHERE lei.entidade.id = :entid"
+        + " ORDER BY lei.nomeLeilao"),
+    @NamedQuery(name="Leilao.findAtivosDeOutrasEntidades",
+        query="SELECT lei from Leilao lei"
+        + " WHERE lei.entidade.id != :entid and lei.estado = 'EM_ANDAMENTO'"
+        + " ORDER BY lei.nomeLeilao"),
+    @NamedQuery(name="Leilao.findFinalizados",
+        query="SELECT lei FROM Leilao lei"
+        + " WHERE lei.estado != 'PROPOSTO' AND lei.estado != 'EM_ANDAMENTO'")
 })
 public class Leilao implements Serializable {
 
@@ -150,6 +165,80 @@ public class Leilao implements Serializable {
 
     public void setEntidade(Entidade entidade) {
         this.entidade = entidade;
+    }
+    
+    public static List<Leilao> getLeiloesPropostos() {
+        EntityManager em = Persistencia.getEntityManager();
+        
+        List<Leilao> list;
+
+        Query query = em.createNamedQuery("Leilao.findPropostos");
+
+        list = query.getResultList();
+
+        em.close();
+
+        return list;
+    }
+    
+    public static List<Leilao> getLeiloesDaEntidade(Long entId) {
+        EntityManager em = Persistencia.getEntityManager();
+        
+        List<Leilao> list;
+
+        Query query = em.createNamedQuery("Leilao.findDaEntidade");
+        
+        query.setParameter("entid", entId);
+
+        list = query.getResultList();
+
+        em.close();
+
+        return list;
+    }
+
+    public static List<Leilao> getLeiloesAprovados() {
+        EntityManager em = Persistencia.getEntityManager();
+        
+        List<Leilao> list;
+
+        Query query = em.createNamedQuery("Leilao.findAtivos");
+
+        list = query.getResultList();
+
+        em.close();
+
+        return list;
+    }
+
+    public static List<Leilao> getLeiloesFinalizados() {
+        EntityManager em = Persistencia.getEntityManager();
+        
+        List<Leilao> list;
+
+        Query query = em.createNamedQuery("Leilao.findFinalizados");
+
+        list = query.getResultList();
+
+        em.close();
+
+        return list;
+    }
+    
+    public static List<Leilao> getLeiloesAtivosDeOutrasEntidades(Long entId) {
+        EntityManager em = Persistencia.getEntityManager();
+        
+        List<Leilao> list;
+
+        Query query = em.createNamedQuery("Leilao.findAtivosDeOutrasEntidades");
+        
+        query.setParameter("entid", entId);
+
+        list = query.getResultList();
+
+        em.close();
+
+        return list;
     }
 
     @Override
