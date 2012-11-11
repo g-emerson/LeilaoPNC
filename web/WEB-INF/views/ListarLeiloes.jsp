@@ -27,7 +27,7 @@
       <td>${leilao.entidade.nome}</td>
       <td>${leilao.quantidadeCER}</td>
       <td>${leilao.lanceMinimo}</td>
-      <td>${leilao.estado}</td>
+      <td>${leilao.estado.desc}</td>
      </tr>
     </c:forEach>
    </table>
@@ -58,7 +58,7 @@
       <td>${leilao.lanceMinimo}</td>
       <td><fmt:formatDate value="${leilao.dataInicial}" pattern="dd/MM/yyyy" /></td>
       <td><fmt:formatDate value="${leilao.dataFinal}" pattern="dd/MM/yyyy" /></td>
-      <td>${leilao.estado}</td>
+      <td>${leilao.estado.desc}</td>
      </tr>
     </c:forEach>
    </table>
@@ -75,7 +75,7 @@
       <td>${leilao.lanceMinimo}</td>
       <td><fmt:formatDate value="${leilao.dataInicial}" pattern="dd/MM/yyyy" /></td>
       <td><fmt:formatDate value="${leilao.dataFinal}" pattern="dd/MM/yyyy" /></td>
-      <td>${leilao.estado}</td>
+      <td>${leilao.estado.desc}</td>
      </tr>
     </c:forEach>
    </table>

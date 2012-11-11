@@ -5,8 +5,6 @@
 package pnc.leilaoVerde.controle;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import pnc.leilaoVerde.dominio.Leilao;
 
 /**
