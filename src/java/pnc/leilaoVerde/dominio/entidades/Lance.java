@@ -8,13 +8,16 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import pnc.leilaoVerde.dominio.LanceLeilaoException;
 import pnc.leilaoVerde.dominio.Leilao;
+import pnc.leilaoVerde.persistencia.Persistencia;
 
 /**
  *
@@ -91,7 +94,7 @@ public class Lance implements Serializable {
     public void setValor(double valor) {
         this.valor = valor;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;

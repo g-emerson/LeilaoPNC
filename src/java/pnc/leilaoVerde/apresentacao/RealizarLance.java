@@ -10,6 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import pnc.leilaoVerde.controle.RealizarLanceControl;
+import pnc.leilaoVerde.dominio.LanceLeilaoException;
+import pnc.leilaoVerde.dominio.administrativo.Usuario;
+import pnc.leilaoVerde.dominio.entidades.Entidade;
 
 /**
  *
@@ -27,16 +32,29 @@ public class RealizarLance extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            /* Montando os componentes da view */
-            request.setAttribute("title", "Realizar Lance");
-            request.setAttribute("menuContexto", "menuEntidades.jsp");
-            request.setAttribute("main", "RealizarLance.jsp");
-
-            RequestDispatcher view =  request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
-            view.forward(request, response);
+        HttpSession session = request.getSession(false);
+        Usuario usu = null;
+        if (session != null) {
+            usu = (Usuario) session.getAttribute("usuario");
         }
-        finally {
+        if (usu != null) {
+            try {
+
+                Long leilaoID = Long.parseLong(request.getParameter("leilao_id"));
+
+                RealizarLanceControl control = new RealizarLanceControl(leilaoID);
+
+                request.setAttribute("leilao", control.getLeilao());
+
+                /* Montando os componentes da view */
+                request.setAttribute("title", "Realizar Lance");
+                request.setAttribute("menuContexto", "menuEntidades.jsp");
+                request.setAttribute("main", "RealizarLance.jsp");
+
+                RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
+                view.forward(request, response);
+            } finally {
+            }
         }
     }
 
@@ -50,7 +68,35 @@ public class RealizarLance extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* TODO: Realizar Lance - implementar lógica de cadastrar o lance */
+        HttpSession session = request.getSession(false);
+        Usuario usu = null;
+        if (session != null) {
+            usu = (Usuario) session.getAttribute("usuario");
+        }
+        if (usu != null) {
+
+            /* Montando os componentes da view */
+            request.setAttribute("title", "Realizar Lance");
+            request.setAttribute("menuContexto", "menuEntidades.jsp");
+            request.setAttribute("main", "ResultadoOperacao.jsp");
+
+            try {
+                Entidade ent = (Entidade) usu;
+                double valor = Double.parseDouble(request.getParameter("valorLance"));
+                Long leilaoID = Long.parseLong(request.getParameter("leilao_id"));
+
+                RealizarLanceControl control = new RealizarLanceControl(leilaoID);
+
+                control.cadastrarLance(valor, ent);
+
+                request.setAttribute("resultado", "Lance realizado com sucesso.");
+            } catch (LanceLeilaoException e) {
+                request.setAttribute("resultado", e.getMessage());
+            } finally {
+            }
+            RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/leilao-template.jsp");
+            view.forward(request, response);
+        }
     }
 
     /** 
