@@ -8,7 +8,7 @@
    </c:when>
    <c:otherwise>
 <!-- IMPLEMENTAR -->
-  <h3>Leilões vencidos</h3>
+  <h3>Leilões arrematados</h3>
    <table>
     <thead>
      <tr><td>Nome</td><td>Entidade</td><td>CER</td><td>Lance Mínimo</td><td>Data inicial</td><td>Data final</td></tr>

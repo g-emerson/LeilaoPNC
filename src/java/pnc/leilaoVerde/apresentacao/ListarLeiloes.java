@@ -72,7 +72,7 @@ public class ListarLeiloes extends HttpServlet {
             request.setAttribute("menuContexto", "menuGeral.jsp");
         }
 
-        request.setAttribute("title", "Entidades");
+        request.setAttribute("title", "Leilões");
         request.setAttribute("main", "ListarLeiloes.jsp");
         RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/leilao-template.jsp");
         view.forward(request, response);
