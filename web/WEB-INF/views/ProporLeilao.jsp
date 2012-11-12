@@ -5,7 +5,7 @@
    <c:choose>
        <c:when test="${entidadeValidada}">
    <form method="post" action="${appRoot}/propostaleilao">
-    <label ><span>(ID)Nome do Leilão: </span><input type="text" name="nome" /></label><br/>
+    <label ><span>Nome do Leilão: </span><input type="text" name="nome" /></label><br/>
     <label ><span>Quantidade de CER oferecida: </span><input type="text" name="quantCER" /></label><br />
     <label ><span>Valor mínimo do lance: </span><input type="text" name="lanceMinimo" /></label><br />
     <input type="submit" value="Confirmar" />

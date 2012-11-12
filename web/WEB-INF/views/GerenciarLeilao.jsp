@@ -18,6 +18,6 @@
     <label ><span>Data de Término: </span><input type="text" name="dataFinal" value="${fmtData}" /></label><br/>
     <fmt:formatDate  value="${leilao.horaFinal}" pattern="HH:mm" var="fmtData" />
     <label ><span>Hora de Término: </span><input type="text" name="horaFinal" value="${fmtData}" /></label><br/>
-    <input type="submit" name="acao" value="Alterar" onclick="return confirm('Realmente deseja realizar a alteração ?');" />
+    <input type="submit" name="acao" value="Salvar" onclick="return confirm('Realmente deseja realizar a alteração ?');" />
     <input type="submit" name="acao" value="Remover" onclick="return confirm('Realmente deseja remover o leilao ?');" />
    </form>
