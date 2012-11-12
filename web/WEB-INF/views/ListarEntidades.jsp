@@ -1,11 +1,11 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    <h2>${requestScope.title}</h2>
-   <h3>Entidades</h3>
+   <h3>Entidades com aprovação pendente</h3>
    <form>
     <table>
      <thead>
-      <tr><td>ID</td><td>Nome</td><td>e-mail</td><td>CNPJ</td><td>Qte. CER</td><td>Validação</td></tr>
+      <tr><td>ID</td><td>Nome</td><td>e-mail</td><td>CNPJ</td><td>Qte. CER</td><td>Validar</td></tr>
      </thead>
      <c:forEach items="${listaEntidades}" var="ent">
       <tr>
@@ -30,6 +30,18 @@
     </table>
    </form>
    <h3>Ranking das entidades</h3>
-   <p>Padaria Pão Mole | 934234506 CER</p>
-   <p>Apoio Atacadista | 10 CER</p>
-   <p>Açougue São Judas | 2 CER</p>
+   <!-- IMPLEMENTAR -->
+   <table>
+     <thead>
+      <tr><td>ID</td><td>Nome</td><td>CNPJ</td><td>Qte. CER</td></tr>
+     </thead>
+     <c:forEach items="${listaEntidades}" var="ent">
+      <tr>
+       <td>${ent.id}</td>
+       <td>${ent.nome}</td>
+       <td>${ent.cnpj}</td>
+       <td>${ent.quantidadeCER}</td>
+      </tr>
+     </c:forEach>
+    </table>
+   <-- -->
