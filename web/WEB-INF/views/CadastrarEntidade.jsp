@@ -17,6 +17,8 @@
      </select>
     </label><br />
     <label><span>Quantidade de CER: </span><input name="quantCER" type="text" /></label><br />
+    <label><span>Cidade: </span><input name="cidade" type="text" /></label><br />
+    <label><span>Estado: </span><input name="estado" type="text" /></label><br />
     <label><span>E-mail: </span><input name="email" type="text" size=50 /></label><br />
     <label><span>Senha: </span><input name="passwd" type="password" /></label><br />
     <label><span>Confirmar senha: </span><input name="passwdConf" type="password" /></label><br />
