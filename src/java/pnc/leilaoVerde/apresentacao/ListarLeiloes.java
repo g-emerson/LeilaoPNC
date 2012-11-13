@@ -41,7 +41,9 @@ public class ListarLeiloes extends HttpServlet {
         List<Leilao> lista;
 
         lista = control.obterLeiloesFinalizados();
-        request.setAttribute("leiloesFinalizados", lista);
+        if (!lista.isEmpty()) {
+            request.setAttribute("leiloesFinalizados", lista);
+        }
 
         /* Montando os componentes da view */
         HttpSession session = request.getSession(false);
@@ -53,18 +55,31 @@ public class ListarLeiloes extends HttpServlet {
         if (usu != null) {
             if (usu.isAdmin()) {
                 lista = control.obterLeiloesPropostos();
-                request.setAttribute("leiloesPropostos", lista);
+                if (!lista.isEmpty()) {
+                    request.setAttribute("leiloesPropostos", lista);
+                }
 
                 lista = control.obterLeiloesAtivos();
-                request.setAttribute("leiloesAprovados", lista);
+                if (!lista.isEmpty()) {
+                    request.setAttribute("leiloesAprovados", lista);
+                }
 
                 request.setAttribute("menuContexto", "menuAdministrador.jsp");
             } else {
                 lista = control.obterLeiloesDaEntidade(usu.getId());
-                request.setAttribute("leiloesPropostos", lista);
+                if (!lista.isEmpty()) {
+                    request.setAttribute("leiloesPropostos", lista);
+                }
 
                 lista = control.obterLeiloesDeOutrasEntidades(usu.getId());
-                request.setAttribute("leiloesAprovados", lista);
+                if (!lista.isEmpty()) {
+                    request.setAttribute("leiloesAprovados", lista);
+                }
+
+                lista = control.obterLeiloesArrematados(usu.getId());
+                if (!lista.isEmpty()) {
+                    request.setAttribute("leiloesArrematados", lista);
+                }
 
                 request.setAttribute("menuContexto", "menuEntidades.jsp");
             }

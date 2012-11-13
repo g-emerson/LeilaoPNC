@@ -51,6 +51,11 @@ import pnc.util.DateUtil;
     query = "SELECT lei from Leilao lei"
     + " WHERE lei.entidade.id != :entid and lei.estado = 'EM_ANDAMENTO'"
     + " ORDER BY lei.nomeLeilao"),
+    @NamedQuery(name = "Leilao.findArrematados",
+    query = "SELECT lei from Leilao lei"
+    + " WHERE lei.estado = 'EM_PAGAMENTO'"
+    + " AND lei.maiorLance.entidade.id = :entid"
+    + " ORDER BY lei.nomeLeilao"),
     @NamedQuery(name = "Leilao.findFinalizados",
     query = "SELECT lei FROM Leilao lei"
     + " WHERE lei.estado != 'PROPOSTO' AND lei.estado != 'EM_ANDAMENTO'")
@@ -239,6 +244,22 @@ public class Leilao implements Serializable {
         List<Leilao> list;
 
         Query query = em.createNamedQuery("Leilao.findAtivosDeOutrasEntidades");
+
+        query.setParameter("entid", entId);
+
+        list = query.getResultList();
+
+        em.close();
+
+        return list;
+    }
+
+    public static List<Leilao> getLeiloesArrematados(Long entId) {
+        EntityManager em = Persistencia.getEntityManager();
+
+        List<Leilao> list;
+
+        Query query = em.createNamedQuery("Leilao.findArrematados");
 
         query.setParameter("entid", entId);
 
