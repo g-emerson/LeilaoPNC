@@ -20,7 +20,13 @@ import pnc.leilaoVerde.dominio.administrativo.Usuario;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Entidade.findAll", query="SELECT ent from Entidade ent")
+    @NamedQuery(name="Entidade.findAll", query="SELECT ent from Entidade ent"),
+    @NamedQuery(name="Entidade.findPeloStatus",
+        query="SELECT ent from Entidade ent WHERE ent.status = :status"),
+    @NamedQuery(name="Entidade.getRanking",
+        query="SELECT ent from Entidade ent"
+        + " WHERE ent.status = :status"
+        + " ORDER BY ent.quantidadeCER DESC")
 })
 public class Entidade extends Usuario implements Serializable {
 
