@@ -13,8 +13,7 @@
        </c:when>
        <c:otherwise>
    <p class="error">
-    Entidade não pode propor leilões pois ainda não teve seus CERs validados pela
-    Administradora do site.
+    Entidade não pode propor leilões pois ainda não teve seus CERs validados pelo Administrador.
    </p>
        </c:otherwise>
    </c:choose>
