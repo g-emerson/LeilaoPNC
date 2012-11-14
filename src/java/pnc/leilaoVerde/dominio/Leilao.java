@@ -42,7 +42,7 @@ import pnc.util.DateUtil;
     + " WHERE lei.estado = 'PROPOSTO'"
     + " ORDER BY lei.nomeLeilao"),
     @NamedQuery(name = "Leilao.findAtivos", query = "SELECT lei from Leilao lei"
-    + " WHERE lei.estado != 'PROPOSTO'"
+    + " WHERE lei.estado = 'EM_ANDAMENTO'"
     + " ORDER BY lei.nomeLeilao"),
     @NamedQuery(name = "Leilao.findDaEntidade",
     query = "SELECT lei from Leilao lei WHERE lei.entidade.id = :entid"
@@ -58,7 +58,12 @@ import pnc.util.DateUtil;
     + " ORDER BY lei.nomeLeilao"),
     @NamedQuery(name = "Leilao.findFinalizados",
     query = "SELECT lei FROM Leilao lei"
-    + " WHERE lei.estado != 'PROPOSTO' AND lei.estado != 'EM_ANDAMENTO'")
+    + " WHERE lei.estado != 'PROPOSTO' AND lei.estado != 'EM_ANDAMENTO'"),
+    @NamedQuery(name = "Leilao.findVencidos",
+    query = "SELECT lei FROM Leilao lei"
+    + " WHERE lei.estado = 'EM_ANDAMENTO'"
+    + " AND"
+    + " (lei.dataFinal < :data OR (lei.dataFinal = :data AND lei.horaFinal < :hora))")
 })
 public class Leilao implements Serializable {
 

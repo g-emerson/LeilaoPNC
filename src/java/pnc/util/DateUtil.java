@@ -25,4 +25,8 @@ public class DateUtil {
 
         return calTime;
     }
+
+    static public Calendar getAgora() {
+        return Calendar.getInstance();
+    }
 }
