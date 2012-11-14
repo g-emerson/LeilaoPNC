@@ -26,8 +26,9 @@
    <h3>Leilões com confirmação pendente</h3>
    </c:when>
    <c:otherwise>
-<!-- IMPLEMENTAR -->
-  <h3>Leilões arrematados</h3>
+   <h3>Leilões da entidade</h3>
+   </c:otherwise>
+   </c:choose>
    <table>
     <thead>
      <tr><td>Nome</td><td>Entidade</td><td>CER</td><td>Lance Mínimo</td><td>Estado</td></tr>
@@ -87,7 +88,7 @@
    <h3>Leilões Finalizados</h3>
    <table>
     <thead>
-     <tr><td>Nome</td><td>Entidade</td><td>CER</td><td>Lance Mínimo</td><td>Data inicial</td><td>Data final</td></tr>
+     <tr><td>Nome</td><td>Entidade</td><td>CER</td><td>Lance Mínimo</td><td>Data inicial</td><td>Data final</td><td>Estado</td></tr>
     </thead>
     <c:forEach items="${leiloesFinalizados}" var="leilao">
      <tr>

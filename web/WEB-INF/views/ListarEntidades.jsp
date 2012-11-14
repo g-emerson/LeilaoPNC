@@ -6,7 +6,7 @@
    <form>
     <table>
      <thead>
-      <tr><td>ID</td><td>Nome</td><td>e-mail</td><td>CNPJ</td><td>Qte. CER</td><td>Validar</td></tr>
+      <tr><td>ID</td><td>Nome</td><td>e-mail</td><td>CNPJ</td><td>Qte. CER</td><td>Validação</td></tr>
      </thead>
      <c:forEach items="${listaPendentes}" var="ent">
       <tr>
