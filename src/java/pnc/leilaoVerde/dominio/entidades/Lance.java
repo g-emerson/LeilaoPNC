@@ -91,7 +91,7 @@ public class Lance implements Serializable {
     public void setValor(double valor) {
         this.valor = valor;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;

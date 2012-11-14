@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import pnc.leilaoVerde.controle.ListarEntidadesControl;
 import pnc.leilaoVerde.dominio.administrativo.Usuario;
 import pnc.leilaoVerde.dominio.entidades.Entidade;
+import pnc.leilaoVerde.dominio.entidades.EstadoEntidade;
 
 /**
  *
@@ -41,9 +42,9 @@ public class ListarEntidades extends HttpServlet {
         try {
             ListarEntidadesControl control = new ListarEntidadesControl();
 
-            List<Entidade> lista = control.obterListaDeEntidades();
+            List<Entidade> lista = control.getRankingDeEntidades();
 
-            request.setAttribute("listaEntidades", lista);
+            request.setAttribute("rankingEntidades", lista);
 
             /* Montando os componentes da view */
             HttpSession session = request.getSession(false);
@@ -54,6 +55,9 @@ public class ListarEntidades extends HttpServlet {
             if ( usu != null ) {
                 if (usu.isAdmin()) {
                     request.setAttribute("menuContexto", "menuAdministrador.jsp");
+
+                    lista = control.getEntidadesPeloStatus(EstadoEntidade.PENDENTE);
+                    request.setAttribute("listaPendentes", lista);
                 }
                 else {
                     request.setAttribute("menuContexto", "menuEntidades.jsp");

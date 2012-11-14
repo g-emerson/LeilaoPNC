@@ -49,7 +49,9 @@ public class GerenciarLeilaoControl extends AbstractControl {
 
             leilao = null;
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            if(em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             throw e;
         } finally {
             em.close();

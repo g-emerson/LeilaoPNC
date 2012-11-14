@@ -35,14 +35,14 @@ public class LazyCloseEntityManager implements EntityManager {
 
         id = ++novoID;
 
-        logger.log(Level.INFO, "EntityManager criado:{0}", id);
+        logger.log(Level.FINER, "EntityManager criado:{0}", id);
     }
 
     public void realClose() {
         if (em.isOpen()) {
             em.close();
         }
-        logger.log(Level.INFO, "EntityManager fechado: {0}", id);
+        logger.log(Level.FINER, "EntityManager fechado: {0}", id);
     }
 
     public void persist(Object o) {

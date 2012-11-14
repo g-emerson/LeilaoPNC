@@ -9,39 +9,25 @@ package pnc.leilaoVerde.dominio;
  * @author giovani
  */
 public enum EstadoLeilao {
-    PROPOSTO {
 
-        @Override
-        public String toString() {
-            return "Proposto";
-        }
-    },
-    CANCELADO {
+    PROPOSTO("Proposto"),
+    CANCELADO("Cancelado"),
+    EM_ANDAMENTO("Em andamento"),
+    CONCLUIDO("Concluído"),
+    EM_PAGAMENTO("Em pagamento");
 
-        @Override
-        public String toString() {
-            return "Cancelado";
-        }
-    },
-    EM_ANDAMENTO {
+    private String desc;
 
-        @Override
-        public String toString() {
-            return "Em andamento";
-        }
-    },
-    CONCLUIDO {
+    private EstadoLeilao(String desc) {
+        this.desc = desc;
+    }
 
-        @Override
-        public String toString() {
-            return "Concluído";
-        }
-    },
-    EM_PAGAMENTO {
+    public String getDesc() {
+        return desc;
+    }
 
-        @Override
-        public String toString() {
-            return "Em pagamento";
-        }
+    @Override
+    public String toString() {
+        return desc;
     }
 }

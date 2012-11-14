@@ -5,8 +5,6 @@
 package pnc.leilaoVerde.controle;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import pnc.leilaoVerde.dominio.Leilao;
 
 /**
@@ -26,12 +24,16 @@ public class ListarLeiloesControl extends AbstractControl {
     public List<Leilao> obterLeiloesDaEntidade(Long idEnt) {
         return Leilao.getLeiloesDaEntidade(idEnt);
     }
-    
+
     public List<Leilao> obterLeiloesFinalizados() {
         return Leilao.getLeiloesFinalizados();
     }
-    
+
     public List<Leilao> obterLeiloesDeOutrasEntidades(Long idEnt) {
         return Leilao.getLeiloesAtivosDeOutrasEntidades(idEnt);
+    }
+
+    public List<Leilao> obterLeiloesArrematados(Long idEnt) {
+        return Leilao.getLeiloesArrematados(idEnt);
     }
 }
