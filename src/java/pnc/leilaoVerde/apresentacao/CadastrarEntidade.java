@@ -36,6 +36,7 @@ public class CadastrarEntidade extends HttpServlet {
         CadastrarEntidadeControl cadEnt = new CadastrarEntidadeControl();
         
         try {
+            //Foi o Giovani que fez os commits abaixo, se ferrar o programa a culpa é dele
             //teste github applicaçao
             List<SegmentoMercado> lista = cadEnt.getListaSegmentos();
             
