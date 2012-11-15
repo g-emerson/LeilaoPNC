@@ -22,7 +22,7 @@
     </jsp-config>
     <listener>
         <description>RequestListener</description>
-        <listener-class>pnc.leilaoVerde.persistencia.WebAppListener</listener-class>
+        <listener-class>pnc.leilaoVerde.controle.WebAppListener</listener-class>
     </listener>
     <servlet>
         <description>Servlet controlador do caso de uso Propor Leilão</description>
