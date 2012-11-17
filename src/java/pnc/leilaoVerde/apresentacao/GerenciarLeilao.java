@@ -105,24 +105,8 @@ public class GerenciarLeilao extends HttpServlet {
 
                         request.setAttribute("resultado", "Leilao removido!");
                         request.setAttribute("main", "ResultadoOperacao.jsp");
-                    } else if (request.getParameter("acao").equals("Alterar")) {
+                    } else if (request.getParameter("acao").equals("Salvar")) {
                         Leilao leilao = control.getLeilao();
-
-                        if (request.getParameter("nome") != null) {
-                            leilao.setNomeLeilao(request.getParameter("nome"));
-                        } else {
-                            throw new Exception("Nome do leilao nulo!");
-                        }
-
-                        if (request.getParameter("lanceMinimo") != null) {
-                            double lanceMinimo = Double.parseDouble(request.getParameter("lanceMinimo"));
-                            leilao.setLanceMinimo(lanceMinimo);
-                        }
-
-                        if (request.getParameter("quantCER") != null) {
-                            int quantCER = Integer.parseInt(request.getParameter("quantCER"));
-                            leilao.setQuantidadeCER(quantCER);
-                        }
 
                         DateFormat timeFormat = new SimpleDateFormat("HH:mm");
                         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
