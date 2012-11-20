@@ -20,21 +20,20 @@ import pnc.leilaoVerde.dominio.administrativo.Usuario;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Entidade.findAll", query="SELECT ent from Entidade ent"),
-    @NamedQuery(name="Entidade.findPeloStatus",
-        query="SELECT ent from Entidade ent WHERE ent.status = :status"),
-    @NamedQuery(name="Entidade.getRanking",
-        query="SELECT ent from Entidade ent"
-        + " WHERE ent.status = :status"
-        + " ORDER BY ent.quantidadeCER DESC")
+    @NamedQuery(name = "Entidade.findAll", query = "SELECT ent from Entidade ent"),
+    @NamedQuery(name = "Entidade.findPeloStatus",
+    query = "SELECT ent from Entidade ent WHERE ent.status = :status"),
+    @NamedQuery(name = "Entidade.getRanking",
+    query = "SELECT ent from Entidade ent"
+    + " WHERE ent.status = :status"
+    + " ORDER BY ent.quantidadeCER DESC")
 })
 public class Entidade extends Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Column(length = 64, unique=true)
+    @Column(length = 64, unique = true)
     private String nome;
-    @Column(length = 15, unique=true)
+    @Column(length = 15, unique = true)
     private String cnpj;
     @Column
     private int quantidadeCER;
@@ -42,7 +41,6 @@ public class Entidade extends Usuario implements Serializable {
     private Localidade localidade;
     @ManyToOne
     private SegmentoMercado segmentoMercado;
-    
     @Column
     private EstadoEntidade status;
 
@@ -85,7 +83,7 @@ public class Entidade extends Usuario implements Serializable {
     public void setSegmentoMercado(SegmentoMercado segmentoMercado) {
         this.segmentoMercado = segmentoMercado;
     }
-    
+
     public EstadoEntidade getStatus() {
         return status;
     }
@@ -99,18 +97,17 @@ public class Entidade extends Usuario implements Serializable {
     }
 
     public void setValidada(boolean validada) {
-        if ( validada ) {
+        if (validada) {
             this.status = EstadoEntidade.VALIDADA;
-        }
-        else {
+        } else {
             this.status = EstadoEntidade.REPROVADA;
         }
     }
 
     /**
-     * Obtem a quantidade de CERs disponivies para a entidade
-     * fornecida oferecer em leilões.
-     * 
+     * Obtem a quantidade de CERs disponivies para a entidade fornecida oferecer
+     * em leilões.
+     *
      * @return Quantidade de CERs disponíveis
      */
     public int obterCERsDisponiveis() {
@@ -121,10 +118,15 @@ public class Entidade extends Usuario implements Serializable {
     }
 
     public Leilao criarPropostaLeilao() {
-        Leilao leilao = new Leilao();
+        Leilao leilao = null;
 
-        leilao.setEntidade(this);
-        leilao.setEstado(EstadoLeilao.PROPOSTO);
+        if (isValidada()) {
+            leilao = new Leilao();
+            leilao.setEntidade(this);
+            leilao.setEstado(EstadoLeilao.PROPOSTO);
+        } else {
+            leilao = null;
+        }
 
         return leilao;
     }

@@ -18,7 +18,7 @@ import pnc.leilaoVerde.dominio.entidades.EstadoEntidade;
 public class ListarEntidadesControl extends AbstractControl {
 
     public List<Entidade> obterListaDeEntidades() {
-        List<Entidade> list = new ArrayList<Entidade>();
+        List<Entidade> list;
 
         EntityManager em = createEntityManager();
 

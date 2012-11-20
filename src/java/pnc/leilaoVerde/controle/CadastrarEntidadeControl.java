@@ -92,7 +92,7 @@ public class CadastrarEntidadeControl extends AbstractControl {
     }
     public List<SegmentoMercado> getListaSegmentos()
     {
-         List<SegmentoMercado> list = new ArrayList<SegmentoMercado>();
+        List<SegmentoMercado> list;
 
         EntityManager em = createEntityManager();
 

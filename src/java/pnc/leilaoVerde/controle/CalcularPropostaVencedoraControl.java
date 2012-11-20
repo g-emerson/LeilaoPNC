@@ -60,25 +60,7 @@ public class CalcularPropostaVencedoraControl extends AbstractControl {
             List<Leilao> lista = query.getResultList();
 
             logger.log(Level.FINER, "Número de leilões: {0}", lista.size());
-
-            for (Leilao leilao : lista) {
-                Calendar cal = DateUtil.getCalendarFromDateAndTime(
-                        leilao.getDataFinal(), leilao.getHoraFinal());
-
-                if (leilao.getEstado() != EstadoLeilao.EM_ANDAMENTO) {
-                    continue;
-                }
-
-                if (agora.before(cal)) {
-                    continue;
-                }
-
-                if (leilao.getMaiorLance() != null) {
-                    leilao.setEstado(EstadoLeilao.EM_PAGAMENTO);
-                } else {
-                    leilao.setEstado(EstadoLeilao.CONCLUIDO);
-                }
-            }
+            processarListaLeiloes(lista, agora);
 
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -89,6 +71,27 @@ public class CalcularPropostaVencedoraControl extends AbstractControl {
             // e.printStackTrace();
         } finally {
             em.close();
+        }
+    }
+
+    void processarListaLeiloes(List<Leilao> lista, Calendar agora) {
+        for (Leilao leilao : lista) {
+            Calendar cal = DateUtil.getCalendarFromDateAndTime(
+                    leilao.getDataFinal(), leilao.getHoraFinal());
+
+            if (leilao.getEstado() != EstadoLeilao.EM_ANDAMENTO) {
+                continue;
+            }
+
+            if (agora.before(cal)) {
+                continue;
+            }
+
+            if (leilao.getMaiorLance() != null) {
+                leilao.setEstado(EstadoLeilao.EM_PAGAMENTO);
+            } else {
+                leilao.setEstado(EstadoLeilao.CONCLUIDO);
+            }
         }
     }
 }

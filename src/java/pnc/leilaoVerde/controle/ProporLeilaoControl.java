@@ -62,6 +62,10 @@ public class ProporLeilaoControl extends AbstractControl {
 
         return entidade;
     }
+    
+    void setEntidade(Entidade ent) {
+        entidade = ent;
+    } 
 
     /**
      * Obtem a quantidade de CERs disponivies para a entidade
@@ -90,7 +94,7 @@ public class ProporLeilaoControl extends AbstractControl {
         }
     }
 
-    private void validarDados() throws ProporLeilaoException {
+    void validarInfoLeilao() throws ProporLeilaoException {
         if (getNomeLeilao() == null) {
             throw new ProporLeilaoException("Nome do leilao não fornecido");
         }
@@ -104,6 +108,10 @@ public class ProporLeilaoControl extends AbstractControl {
         if (getLanceMinimo() <= 0) {
             throw new ProporLeilaoException("Lance mínimo não pode ser zero ou negativa");
         }
+    }
+    
+    private void validarDados() throws ProporLeilaoException {
+        validarInfoLeilao();
 
         EntityManager em = createEntityManager();
         try {

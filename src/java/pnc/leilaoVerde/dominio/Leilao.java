@@ -295,10 +295,7 @@ public class Leilao implements Serializable {
         return DateUtil.getCalendarFromDateAndTime(dataFinal, horaFinal);
     }
 
-    public void cadastrarLance(double valor, Entidade ent)
-            throws LanceLeilaoException {
-        Date agora = new Date();
-
+    void validarLance(Date agora, double valor) throws LanceLeilaoException {
         Calendar cal = Calendar.getInstance();
         cal.setTime(agora);
 
@@ -322,6 +319,13 @@ public class Leilao implements Serializable {
                     + String.format("Agora %s, término %s", df.format(agora),
                     df.format(calFim.getTime())));
         }
+    }
+    
+    public void cadastrarLance(double valor, Entidade ent)
+            throws LanceLeilaoException {
+        Date agora = new Date();
+
+        validarLance(agora, valor);
 
         if (valor < this.getLanceMinimo()) {
             throw new LanceLeilaoException("Valor do lance menor que lance mínimo");
