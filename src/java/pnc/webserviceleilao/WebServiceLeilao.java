@@ -21,11 +21,8 @@ public class WebServiceLeilao {
 	 */
 	@WebMethod(operationName = "getEntidade")
 	public Entidade getEntidade(@WebParam(name = "id") String id) {
-		Entidade entidade = new Entidade();
-		entidade.setNome("Exemplo");
-		entidade.setCnpj("123");
-		// Retornar a entidade
-		
+		Entidade entidade = Entidade.getPeloCnpj(id);
+
 		return entidade;
 	}
 }
