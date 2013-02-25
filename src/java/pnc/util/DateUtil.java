@@ -11,6 +11,7 @@ import java.util.Date;
  * Classe para operações utilitárias com Datas e horários
  * @author giovani
  */
+//testes
 public class DateUtil {
     static public Calendar getCalendarFromDateAndTime(Date date, Date time) {
         Calendar calDate = Calendar.getInstance();
